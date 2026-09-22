@@ -9,6 +9,9 @@ RELATORIOS = [
     ('01', 'medicos', 'O médico da Secretaria de Saúde do DF',
      'Quantos são, quanto ganham, quem está saindo, formação e residência médica.',
      'Folha da SES-DF, 01/2013 a 07/2026', '09/2026'),
+    ('02', 'iges-hcb', 'IGES-DF e Hospital da Criança: dois modelos pagos pela SES',
+     'Leitos, médicos, internações, UPAs, balanços, auditoria e transparência lado a lado.',
+     'SIH 2008–2024, CNES 2005–2026, balanços do IGES-DF 2018–2023', '09/2026'),
 ]
 
 cards = '\n'.join(f'''<a class="card" href="{p}/">

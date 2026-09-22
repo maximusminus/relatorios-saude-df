@@ -1,0 +1,232 @@
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>IGES-DF e HCB</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,650&family=Public+Sans:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+:root{--bg:#f5f6f3;--fg:#17211d;--mut:#56645e;--rule:#d5dbd6;--card:#ffffff;
+--a1:#11614f;--a2:#b4621c;--a3:#7a3b8f;--hl:#e5efe9;--warn:#fbf1e4;
+--serif:"Newsreader",Georgia,serif;--sans:"Public Sans",system-ui,sans-serif;--mono:"JetBrains Mono",ui-monospace,monospace}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--bg:#111714;--fg:#e4ebe7;--mut:#9aaaa2;--rule:#2b3632;--card:#18201d;
+--a1:#4fc0a2;--a2:#e59a55;--a3:#c68ad8;--hl:#1b2a25;--warn:#2b2217}}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#111714;--fg:#e4ebe7;--mut:#9aaaa2;--rule:#2b3632;--card:#18201d;
+--a1:#4fc0a2;--a2:#e59a55;--a3:#c68ad8;--hl:#1b2a25;--warn:#2b2217}
+body{background:var(--bg);color:var(--fg);font:16px/1.6 var(--sans)}
+.wrap{max-width:980px;margin:0 auto;padding-inline:16px;padding-block:40px 64px}
+.kick{font:600 12px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--a1)}
+h1{font:650 clamp(36px,6vw,60px)/1.02 var(--serif);margin:.35em 0 .3em;text-wrap:balance;letter-spacing:-.01em}
+.lede{font-size:19px;max-width:62ch;color:var(--mut)}
+h2{font:650 30px/1.15 var(--serif);margin:0 0 .4em;text-wrap:balance}
+h3{font:700 13px/1.3 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--mut);margin:28px 0 8px}
+section{border-top:1px solid var(--rule);padding-block:40px 8px}
+p{max-width:68ch}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);margin:32px 0 8px}
+.kpi{background:var(--card);padding:18px}
+.kpi b{display:block;font:600 34px/1.1 var(--mono);font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.kpi span{font-size:14px;color:var(--mut);display:block;margin-top:6px}
+.kpi small{display:block;font-size:12px;color:var(--mut);margin-top:6px;font-family:var(--mono)}
+figure{margin:16px 0 8px;background:var(--card);border:1px solid var(--rule);padding:16px}
+figure svg{width:100%;height:auto;display:block}
+figcaption{font-size:13px;color:var(--mut);margin-top:8px}
+.grid{stroke:var(--rule);stroke-width:1}
+.tk{fill:var(--mut);font:11px var(--mono)}
+polyline{stroke-width:2.2;stroke-linejoin:round}
+polyline.s1,.dot.s1{stroke:var(--a1)} polyline.s2{stroke:var(--a2)} polyline.s3{stroke:var(--a3)}
+.dot.s1{fill:var(--a1)} .dot.s2{fill:var(--a2);stroke:none} .dot.s3{fill:var(--a3);stroke:none}
+rect.s1{fill:var(--a1)} rect.s2{fill:var(--a2)} rect.s3{fill:var(--a3)}
+.leg{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:13px;color:var(--mut);margin-bottom:6px}
+.sw{display:inline-block;width:14px;height:4px;margin-right:6px;vertical-align:middle}
+.sw.s1{background:var(--a1)} .sw.s2{background:var(--a2)} .sw.s3{background:var(--a3)}
+.tw{overflow-x:auto;margin:12px 0}
+table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{text-align:left;padding:7px 10px;border-bottom:1px solid var(--rule);vertical-align:top}
+th{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--mut);font-weight:600}
+td.n,th.n{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+.lac{background:var(--warn);border-left:3px solid var(--a2);padding:12px 16px;margin:16px 0;font-size:14px;max-width:none}
+.lac b{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--a2);display:block;margin-bottom:4px}
+.src{font-size:12.5px;color:var(--mut);font-family:var(--mono);max-width:none;word-break:break-word}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+a{color:var(--a1)}
+
+polyline.s4{stroke:var(--mut);stroke-dasharray:4 4} .dot.s4{fill:var(--mut);stroke:none} .sw.s4{background:var(--mut)}
+.rep{display:flex;justify-content:flex-end;margin:12px 0 20px}
+.rep.fim{justify-content:center;margin:36px 0 8px}
+.rep button{display:inline-flex;align-items:center;gap:8px;background:#c8102e;color:#fff;cursor:pointer;
+font:600 14px/1 var(--sans,system-ui);padding:11px 16px;border-radius:6px;border:2px solid #c8102e}
+.rep button:hover,.rep button:focus-visible{background:#fff;color:#c8102e;outline:none}
+.modal{position:fixed;inset:0;background:rgba(10,15,30,.55);display:grid;place-items:center;z-index:20;padding:16px}
+.modal[hidden]{display:none}
+.modal-caixa{background:var(--card);color:var(--fg);border-radius:14px;max-width:560px;width:100%;
+max-height:88vh;overflow:auto;padding:24px;position:relative;box-shadow:0 20px 60px rgba(0,0,0,.35)}
+.modal-caixa h3{margin:0 0 8px}
+.fechar{position:absolute;top:10px;right:12px;font-size:26px;line-height:1;border:0;background:none;color:var(--mut);cursor:pointer}
+.form-relatar label{display:block;margin:12px 0;font-size:13px;color:var(--mut)}
+.form-relatar textarea,.form-relatar input[type=email]{width:100%;box-sizing:border-box;font:inherit;color:inherit;
+background:var(--card);border:1px solid var(--rule);border-radius:8px;padding:8px 10px;margin-top:4px;resize:vertical}
+.form-relatar button[type=submit]{background:#c8102e;color:#fff;border:2px solid #c8102e;border-radius:6px;
+padding:9px 16px;font:600 14px/1 var(--sans,system-ui);cursor:pointer}
+.form-relatar button[type=submit]:disabled{opacity:.6;cursor:wait}
+.nota{font-size:13px;color:var(--mut)}
+.campo-oculto{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+@media print{.rep,.modal{display:none!important}}</style>
+<div class="wrap">
+<div class="rep"><button type="button" data-relatar><span aria-hidden="true">⚑</span> Relatar problema ou sugestão</button></div>
+<div class="kick">Relatório 02 · Saúde no DF · dois modelos de gestão</div>
+<h1>IGES-DF e Hospital da Criança: dois modelos pagos pela SES</h1>
+<p class="lede">O Instituto de Gestão Estratégica de Saúde (IGES-DF) e o Hospital da Criança de Brasília (HCB) recebem recursos
+da Secretaria de Saúde para operar hospitais públicos fora da administração direta. Este relatório põe lado a lado o que os
+dados públicos já coletados pelo projeto saudedf mostram sobre os dois: tamanho, produção, contas, auditoria e transparência.
+Onde a fonte não publica o dado, a lacuna fica declarada e não é estimada.</p>
+<div class="kpis">
+<div class="kpi"><b>5 de 5</b><span>balanços do IGES-DF (2019–2023) com opinião <b>com ressalva</b> do auditor independente</span><small>2018 (IHBDF): sem ressalva</small></div>
+<div class="kpi"><b>63º</b><span>termo aditivo ao contrato de gestão 001/2018 do IGES-DF, o mais alto publicado</span><small>HCB: 62º termo aditivo ao contrato 076/2019</small></div>
+<div class="kpi"><b>6 → 13</b><span>unidades públicas de pronto atendimento no CNES, dez/2020 → dez/2022</span><small>4 em 2012; 13 em ago/2026</small></div>
+<div class="kpi"><b>3/3 · 1/3</b><span>tipos de documento de prestação de contas localizados: IGES-DF · HCB</span><small>medida própria, não índice oficial</small></div>
+</div>
+
+<section id="modelos"><h2>1. Os dois modelos</h2>
+<p>O <b>HBDF</b> passou a ser gerido pelo Instituto Hospital de Base, depois IGES-DF, e o CNES registra a troca: até 2017
+o hospital constava sob a raiz de CNPJ da Secretaria de Saúde; a partir de dezembro de 2018, sob a raiz 28.481.233
+(IGES-DF), natureza jurídica 3077, serviço social autônomo. O <b>HRSM</b> fez a mesma passagem em 2020. O <b>HCB</b> continua
+cadastrado no CNES sob a raiz de CNPJ da Secretaria (00.394.700), natureza 1023, embora seja
+operado por contrato de gestão (076/2019).</p>
+<div class="tw"><table><thead><tr><th>Unidade</th><th>Natureza jurídica no CNES (ago/2026)</th><th>Raiz do CNPJ no CNES</th><th>Desde</th></tr></thead><tbody><tr><td>Hospital de Base (HBDF)</td><td>3077 — serviço social autônomo</td><td>28481233 (IGES-DF)</td><td>2018</td></tr><tr><td>Hospital Regional de Santa Maria (HRSM)</td><td>3077 — serviço social autônomo</td><td>28481233 (IGES-DF)</td><td>2020</td></tr><tr><td>Hospital da Criança de Brasília (HCB)</td><td>1023 — órgão público do Poder Executivo estadual/DF</td><td>00394700 (SES-DF)</td><td>—</td></tr></tbody></table></div>
+<p class="src">Fonte: DATASUS, CNES, arquivos ST (estabelecimentos) e PF (profissionais) do DF, competência de dezembro de cada ano (2026: agosto); campos CNES, CPF_CNPJ e NAT_JUR. “Desde” = primeiro dezembro em que a raiz 28481233 aparece.</p>
+<div class="lac"><b>Lacuna declarada — governança</b>A composição dos conselhos de administração do IGES-DF e do HCB, os estatutos e
+o assento do secretário de Saúde em cada conselho não estão entre os dados coletados pelo saudedf. A diferença de governança entre
+os dois modelos, central na pergunta, não pode ser medida aqui.</div>
+<div class="lac"><b>Lacuna declarada — trânsito de dirigentes</b>A passagem de dirigentes entre o IGES-DF e cargos de secretário ou
+subsecretário da SES exigiria nomes e datas de nomeação. O Diário Oficial (DODF) foi coletado só como índice, e este relatório não
+publica nomes. Não há medida possível com os dados disponíveis.</div>
+</section>
+<section id="tamanho"><h2>2. Tamanho: leitos e médicos</h2>
+<figure><div class="leg"><span><i class="sw s1"></i>HBDF</span><span><i class="sw s2"></i>HRSM</span><span><i class="sw s3"></i>HCB</span></div><svg viewBox="0 0 720 260" role="img" aria-label="Leitos SUS por hospital"><line class="grid" x1="56" x2="704" y1="226.0" y2="226.0"/><text class="tk" x="50" y="230.0" text-anchor="end">0</text><line class="grid" x1="56" x2="704" y1="173.5" y2="173.5"/><text class="tk" x="50" y="177.5" text-anchor="end">300</text><line class="grid" x1="56" x2="704" y1="121.0" y2="121.0"/><text class="tk" x="50" y="125.0" text-anchor="end">600</text><line class="grid" x1="56" x2="704" y1="68.5" y2="68.5"/><text class="tk" x="50" y="72.5" text-anchor="end">900</text><line class="grid" x1="56" x2="704" y1="16.0" y2="16.0"/><text class="tk" x="50" y="20.0" text-anchor="end">1.200</text><text class="tk" x="56.0" y="248" text-anchor="middle">2005</text><text class="tk" x="148.6" y="248" text-anchor="middle">2008</text><text class="tk" x="241.1" y="248" text-anchor="middle">2011</text><text class="tk" x="333.7" y="248" text-anchor="middle">2014</text><text class="tk" x="426.3" y="248" text-anchor="middle">2017</text><text class="tk" x="518.9" y="248" text-anchor="middle">2020</text><text class="tk" x="611.4" y="248" text-anchor="middle">2023</text><text class="tk" x="704.0" y="248" text-anchor="middle">2026</text><polyline class="s1" fill="none" points="56.0,74.8 86.9,72.5 117.7,72.5 148.6,74.1 179.4,140.9 210.3,73.9 241.1,72.3 272.0,72.0 302.9,77.6 333.7,77.6 364.6,107.2 395.4,107.2 426.3,116.5 457.1,109.4 488.0,121.9 518.9,91.4 549.7,97.5 580.6,106.8 611.4,100.3 642.3,70.6 673.1,70.6 704.0,93.2"/><circle class="s1 dot" cx="704.0" cy="93.2" r="3.5"/><polyline class="s2" fill="none" points="148.6,213.8 179.4,172.1 210.3,170.2 241.1,166.5 272.0,163.2 302.9,183.1 333.7,168.6 364.6,160.0 395.4,167.4 426.3,156.5 457.1,154.6 488.0,168.6 518.9,130.8 549.7,142.0 580.6,165.8 611.4,160.0 642.3,134.8 673.1,134.8 704.0,134.5"/><circle class="s2 dot" cx="704.0" cy="134.5" r="3.5"/><polyline class="s3" fill="none" points="241.1,222.5 272.0,222.2 302.9,222.2 333.7,222.2 364.6,223.0 395.4,223.0 426.3,223.0 457.1,213.8 488.0,199.8 518.9,192.8 549.7,189.6 580.6,191.3 611.4,191.3 642.3,187.5 673.1,187.5 704.0,187.5"/><circle class="s3 dot" cx="704.0" cy="187.5" r="3.5"/></svg>
+<figcaption>Leitos SUS por hospital (enfermaria, cuidados intermediários e UTI somados), 2005–2026.</figcaption></figure>
+<div class="tw"><table><thead><tr><th>Ano</th><th class=n>HBDF leitos</th><th class=n>HBDF UTI</th><th class=n>HRSM leitos</th><th class=n>HRSM UTI</th><th class=n>HCB leitos</th><th class=n>HCB UTI</th></tr></thead><tbody><tr><td>2012</td><td class=n>880</td><td class=n>29</td><td class=n>359</td><td class=n>50</td><td class=n>22</td><td class=n>—</td></tr><tr><td>2013</td><td class=n>848</td><td class=n>29</td><td class=n>245</td><td class=n>50</td><td class=n>22</td><td class=n>—</td></tr><tr><td>2014</td><td class=n>848</td><td class=n>29</td><td class=n>328</td><td class=n>50</td><td class=n>22</td><td class=n>—</td></tr><tr><td>2015</td><td class=n>679</td><td class=n>29</td><td class=n>377</td><td class=n>50</td><td class=n>17</td><td class=n>—</td></tr><tr><td>2016</td><td class=n>679</td><td class=n>29</td><td class=n>335</td><td class=n>50</td><td class=n>17</td><td class=n>—</td></tr><tr><td>2017</td><td class=n>626</td><td class=n>32</td><td class=n>397</td><td class=n>50</td><td class=n>17</td><td class=n>—</td></tr><tr><td>2018</td><td class=n>666</td><td class=n>32</td><td class=n>408</td><td class=n>50</td><td class=n>70</td><td class=n>—</td></tr><tr><td>2019</td><td class=n>595</td><td class=n>32</td><td class=n>328</td><td class=n>58</td><td class=n>150</td><td class=n>30</td></tr><tr><td>2020</td><td class=n>769</td><td class=n>117</td><td class=n>544</td><td class=n>118</td><td class=n>190</td><td class=n>30</td></tr><tr><td>2021</td><td class=n>734</td><td class=n>81</td><td class=n>480</td><td class=n>49</td><td class=n>208</td><td class=n>48</td></tr><tr><td>2022</td><td class=n>681</td><td class=n>68</td><td class=n>344</td><td class=n>60</td><td class=n>198</td><td class=n>38</td></tr><tr><td>2023</td><td class=n>718</td><td class=n>76</td><td class=n>377</td><td class=n>60</td><td class=n>198</td><td class=n>38</td></tr><tr><td>2024</td><td class=n>888</td><td class=n>86</td><td class=n>521</td><td class=n>60</td><td class=n>220</td><td class=n>56</td></tr><tr><td>2025</td><td class=n>888</td><td class=n>86</td><td class=n>521</td><td class=n>60</td><td class=n>220</td><td class=n>56</td></tr><tr><td>2026</td><td class=n>759</td><td class=n>86</td><td class=n>523</td><td class=n>60</td><td class=n>220</td><td class=n>56</td></tr></tbody></table></div>
+<p class="src">Fonte: tabela leitos_serie_cnes do saudedf (DATASUS, CNES, arquivos LT do DF). “—” = sem leito SUS registrado no ano.</p>
+<h3>Médicos com vínculo registrado no CNES</h3>
+<div class="tw"><table><thead><tr><th>Dezembro de</th><th class=n>HBDF</th><th class=n>HRSM</th><th class=n>HCB</th><th class=n>Pronto atendimento público (soma)</th></tr></thead><tbody><tr><td>2012</td><td class=n>937</td><td class=n>372</td><td class=n>134</td><td class=n>70</td></tr><tr><td>2013</td><td class=n>702</td><td class=n>393</td><td class=n>143</td><td class=n>165</td></tr><tr><td>2014</td><td class=n>797</td><td class=n>394</td><td class=n>155</td><td class=n>217</td></tr><tr><td>2015</td><td class=n>769</td><td class=n>340</td><td class=n>171</td><td class=n>145</td></tr><tr><td>2016</td><td class=n>891</td><td class=n>346</td><td class=n>189</td><td class=n>189</td></tr><tr><td>2017</td><td class=n>864</td><td class=n>354</td><td class=n>192</td><td class=n>190</td></tr><tr><td>2018</td><td class=n>956</td><td class=n>469</td><td class=n>216</td><td class=n>150</td></tr><tr><td>2019</td><td class=n>1.162</td><td class=n>475</td><td class=n>268</td><td class=n>250</td></tr><tr><td>2020</td><td class=n>1.278</td><td class=n>522</td><td class=n>338</td><td class=n>281</td></tr><tr><td>2021</td><td class=n>1.309</td><td class=n>545</td><td class=n>352</td><td class=n>263</td></tr><tr><td>2022</td><td class=n>1.299</td><td class=n>584</td><td class=n>358</td><td class=n>365</td></tr><tr><td>2023</td><td class=n>1.345</td><td class=n>665</td><td class=n>395</td><td class=n>435</td></tr><tr><td>2024</td><td class=n>1.367</td><td class=n>744</td><td class=n>438</td><td class=n>510</td></tr><tr><td>2025</td><td class=n>1.140</td><td class=n>757</td><td class=n>431</td><td class=n>525</td></tr></tbody></table></div>
+<p class="src">Fonte: DATASUS, CNES, arquivos ST (estabelecimentos) e PF (profissionais) do DF, competência de dezembro de cada ano (2026: agosto); profissionais com CBO 225 (médicos), contados por CNS distinto em cada estabelecimento.
+Um médico com vínculo em duas unidades conta nas duas. Nenhum nome sai da análise.</p>
+<div class="lac"><b>Lacuna declarada — tempo de formado</b>O CNES não registra o ano de formatura, e os empregados do IGES-DF não
+estão na folha do GDF que o saudedf coleta. Se as unidades geridas pelo IGES-DF são ocupadas por médicos recém-formados não é
+mensurável com estes dados.</div>
+</section>
+<section id="producao"><h2>3. Produção e desfecho das internações</h2>
+<p>O SIH registra cada internação paga pelo SUS, com o CNES do hospital. Em 2024, o HBDF fez <b>27.253</b>
+internações, o HRSM <b>28.680</b> e o HCB <b>7.978</b>, de 248.088 no DF.
+O HBDF fez 22.725 internações em 2017, último ano sob gestão direta.</p>
+<figure><div class="leg"><span><i class="sw s1"></i>HBDF</span><span><i class="sw s2"></i>HRSM</span><span><i class="sw s3"></i>HCB</span></div><svg viewBox="0 0 720 260" role="img" aria-label="Internações SUS por ano"><line class="grid" x1="56" x2="704" y1="226.0" y2="226.0"/><text class="tk" x="50" y="230.0" text-anchor="end">0</text><line class="grid" x1="56" x2="704" y1="173.5" y2="173.5"/><text class="tk" x="50" y="177.5" text-anchor="end">8.000</text><line class="grid" x1="56" x2="704" y1="121.0" y2="121.0"/><text class="tk" x="50" y="125.0" text-anchor="end">16.000</text><line class="grid" x1="56" x2="704" y1="68.5" y2="68.5"/><text class="tk" x="50" y="72.5" text-anchor="end">24.000</text><line class="grid" x1="56" x2="704" y1="16.0" y2="16.0"/><text class="tk" x="50" y="20.0" text-anchor="end">32.000</text><text class="tk" x="56.0" y="248" text-anchor="middle">2008</text><text class="tk" x="137.0" y="248" text-anchor="middle">2010</text><text class="tk" x="218.0" y="248" text-anchor="middle">2012</text><text class="tk" x="299.0" y="248" text-anchor="middle">2014</text><text class="tk" x="380.0" y="248" text-anchor="middle">2016</text><text class="tk" x="461.0" y="248" text-anchor="middle">2018</text><text class="tk" x="542.0" y="248" text-anchor="middle">2020</text><text class="tk" x="623.0" y="248" text-anchor="middle">2022</text><text class="tk" x="704.0" y="248" text-anchor="middle">2024</text><polyline class="s1" fill="none" points="56.0,59.5 96.5,72.8 137.0,80.4 177.5,79.2 218.0,116.6 258.5,132.2 299.0,135.3 339.5,127.2 380.0,77.8 420.5,76.9 461.0,61.8 501.5,64.5 542.0,48.4 582.5,63.4 623.0,66.9 663.5,60.5 704.0,47.2"/><circle class="s1 dot" cx="704.0" cy="47.2" r="3.5"/><polyline class="s2" fill="none" points="96.5,224.4 137.0,168.1 177.5,172.5 218.0,163.2 258.5,122.7 299.0,141.6 339.5,155.5 380.0,162.2 420.5,162.4 461.0,113.0 501.5,130.3 542.0,82.8 582.5,99.5 623.0,92.9 663.5,73.4 704.0,37.8"/><circle class="s2 dot" cx="704.0" cy="37.8" r="3.5"/><polyline class="s3" fill="none" points="177.5,226.0 218.0,224.4 258.5,221.4 299.0,219.6 339.5,219.5 380.0,220.0 420.5,216.4 461.0,214.0 501.5,189.1 542.0,191.9 582.5,185.4 623.0,180.1 663.5,176.7 704.0,173.6"/><circle class="s3 dot" cx="704.0" cy="173.6" r="3.5"/></svg>
+<figcaption>Internações SUS (AIH) por ano de competência, 2008–2024.</figcaption></figure>
+<figure><div class="leg"><span><i class="sw s1"></i>HBDF</span><span><i class="sw s2"></i>HRSM</span><span><i class="sw s3"></i>HCB</span><span><i class="sw s4"></i>DF, todas as unidades</span></div><svg viewBox="0 0 720 260" role="img" aria-label="Internações com uso de UTI"><line class="grid" x1="56" x2="704" y1="226.0" y2="226.0"/><text class="tk" x="50" y="230.0" text-anchor="end">0%</text><line class="grid" x1="56" x2="704" y1="173.5" y2="173.5"/><text class="tk" x="50" y="177.5" text-anchor="end">6%</text><line class="grid" x1="56" x2="704" y1="121.0" y2="121.0"/><text class="tk" x="50" y="125.0" text-anchor="end">12%</text><line class="grid" x1="56" x2="704" y1="68.5" y2="68.5"/><text class="tk" x="50" y="72.5" text-anchor="end">18%</text><line class="grid" x1="56" x2="704" y1="16.0" y2="16.0"/><text class="tk" x="50" y="20.0" text-anchor="end">24%</text><text class="tk" x="56.0" y="248" text-anchor="middle">2008</text><text class="tk" x="137.0" y="248" text-anchor="middle">2010</text><text class="tk" x="218.0" y="248" text-anchor="middle">2012</text><text class="tk" x="299.0" y="248" text-anchor="middle">2014</text><text class="tk" x="380.0" y="248" text-anchor="middle">2016</text><text class="tk" x="461.0" y="248" text-anchor="middle">2018</text><text class="tk" x="542.0" y="248" text-anchor="middle">2020</text><text class="tk" x="623.0" y="248" text-anchor="middle">2022</text><text class="tk" x="704.0" y="248" text-anchor="middle">2024</text><polyline class="s1" fill="none" points="56.0,195.8 96.5,194.2 137.0,192.6 177.5,198.5 218.0,162.2 258.5,145.6 299.0,146.6 339.5,155.8 380.0,169.3 420.5,187.7 461.0,175.4 501.5,176.6 542.0,125.1 582.5,100.9 623.0,147.6 663.5,157.7 704.0,115.5"/><circle class="s1 dot" cx="704.0" cy="115.5" r="3.5"/><polyline class="s2" fill="none" points="96.5,226.0 137.0,218.7 177.5,186.9 218.0,119.7 258.5,170.1 299.0,169.8 339.5,159.3 380.0,151.6 420.5,185.5 461.0,185.1 501.5,190.4 542.0,182.3 582.5,177.4 623.0,175.7 663.5,170.1 704.0,177.6"/><circle class="s2 dot" cx="704.0" cy="177.6" r="3.5"/><polyline class="s3" fill="none" points="177.5,226.0 218.0,226.0 258.5,226.0 299.0,226.0 339.5,226.0 380.0,226.0 420.5,226.0 461.0,226.0 501.5,224.0 542.0,93.4 582.5,57.4 623.0,39.5 663.5,66.3 704.0,65.0"/><circle class="s3 dot" cx="704.0" cy="65.0" r="3.5"/><polyline class="s4" fill="none" points="56.0,200.6 96.5,198.7 137.0,199.0 177.5,197.5 218.0,192.3 258.5,193.8 299.0,192.9 339.5,194.6 380.0,191.8 420.5,196.8 461.0,191.9 501.5,196.0 542.0,184.7 582.5,176.6 623.0,176.9 663.5,173.8 704.0,164.1"/><circle class="s4 dot" cx="704.0" cy="164.1" r="3.5"/></svg>
+<figcaption>Percentual das internações com uso de UTI (campo MARCA_UTI diferente de 00).</figcaption></figure>
+<div class="tw"><table><thead><tr><th>Ano</th><th>Unidade</th><th class=n>Internações</th><th class=n>Óbitos (%)</th><th class=n>Permanência média (dias)</th><th class=n>Com UTI (%)</th><th class=n>Valor médio da AIH (R$ nominais)</th></tr></thead><tbody><tr><td>2012</td><td>HBDF</td><td class=n>16.669</td><td class=n>5,9</td><td class=n>11,3</td><td class=n>7,3</td><td class=n>R$ 1.770,20</td></tr><tr><td>2012</td><td>HRSM</td><td class=n>9.565</td><td class=n>6,9</td><td class=n>7,5</td><td class=n>12,1</td><td class=n>R$ 1.475,79</td></tr><tr><td>2012</td><td>HCB</td><td class=n>239</td><td class=n>0,0</td><td class=n>2,7</td><td class=n>0,0</td><td class=n>R$ 294,08</td></tr><tr><td>2012</td><td>Demais do DF</td><td class=n>158.942</td><td class=n>2,5</td><td class=n>6,4</td><td class=n>3,0</td><td class=n>R$ 853,68</td></tr><tr><td>2017</td><td>HBDF</td><td class=n>22.725</td><td class=n>6,3</td><td class=n>7,7</td><td class=n>4,4</td><td class=n>R$ 1.506,54</td></tr><tr><td>2017</td><td>HRSM</td><td class=n>9.689</td><td class=n>4,1</td><td class=n>8,5</td><td class=n>4,6</td><td class=n>R$ 1.003,75</td></tr><tr><td>2017</td><td>HCB</td><td class=n>1.456</td><td class=n>0,1</td><td class=n>2,4</td><td class=n>0,0</td><td class=n>R$ 528,69</td></tr><tr><td>2017</td><td>Demais do DF</td><td class=n>162.834</td><td class=n>2,7</td><td class=n>5,6</td><td class=n>3,1</td><td class=n>R$ 985,17</td></tr><tr><td>2019</td><td>HBDF</td><td class=n>24.611</td><td class=n>6,4</td><td class=n>7,8</td><td class=n>5,6</td><td class=n>R$ 1.918,51</td></tr><tr><td>2019</td><td>HRSM</td><td class=n>14.584</td><td class=n>3,0</td><td class=n>6,9</td><td class=n>4,1</td><td class=n>R$ 971,10</td></tr><tr><td>2019</td><td>HCB</td><td class=n>5.630</td><td class=n>1,0</td><td class=n>5,7</td><td class=n>0,2</td><td class=n>R$ 710,54</td></tr><tr><td>2019</td><td>Demais do DF</td><td class=n>185.767</td><td class=n>2,5</td><td class=n>5,4</td><td class=n>3,2</td><td class=n>R$ 939,28</td></tr><tr><td>2022</td><td>HBDF</td><td class=n>24.245</td><td class=n>6,4</td><td class=n>8,3</td><td class=n>9,0</td><td class=n>R$ 2.628,24</td></tr><tr><td>2022</td><td>HRSM</td><td class=n>20.281</td><td class=n>3,6</td><td class=n>6,3</td><td class=n>5,7</td><td class=n>R$ 1.283,14</td></tr><tr><td>2022</td><td>HCB</td><td class=n>7.000</td><td class=n>1,4</td><td class=n>6,9</td><td class=n>21,3</td><td class=n>R$ 2.038,69</td></tr><tr><td>2022</td><td>Demais do DF</td><td class=n>180.537</td><td class=n>2,6</td><td class=n>5,2</td><td class=n>4,5</td><td class=n>R$ 1.156,23</td></tr><tr><td>2024</td><td>HBDF</td><td class=n>27.253</td><td class=n>6,5</td><td class=n>7,7</td><td class=n>12,6</td><td class=n>R$ 3.169,30</td></tr><tr><td>2024</td><td>HRSM</td><td class=n>28.680</td><td class=n>2,6</td><td class=n>5,3</td><td class=n>5,5</td><td class=n>R$ 1.174,22</td></tr><tr><td>2024</td><td>HCB</td><td class=n>7.978</td><td class=n>1,4</td><td class=n>7,3</td><td class=n>18,4</td><td class=n>R$ 2.344,87</td></tr><tr><td>2024</td><td>Demais do DF</td><td class=n>184.177</td><td class=n>2,5</td><td class=n>5,4</td><td class=n>6,0</td><td class=n>R$ 1.370,00</td></tr></tbody></table></div>
+<p class="src">Fonte: DATASUS, SIH/SUS, AIH reduzida (RD), DF, arquivos RDDF&lt;aamm&gt;.dbc de 01/2008 a 12/2024, agregados por CNES do estabelecimento. Campos MORTE, DIAS_PERM, MARCA_UTI e VAL_TOT. O total do DF por ano bate, internação por
+internação, com a tabela sih_uti_serie do saudedf. Valores nominais, sem correção.</p>
+<div class="lac"><b>Leia com cuidado</b>Mortalidade e permanência não comparam a qualidade dos hospitais entre si: o HCB atende
+crianças em alta complexidade, o HBDF é referência em trauma e alta complexidade adulta, e o perfil dos pacientes muda cada
+número. A comparação que o dado sustenta é a do mesmo hospital antes e depois da troca de gestão.</div>
+<div class="lac"><b>Lacuna declarada — fila de UTI</b>A lista de espera por leito de UTI do DF é publicada pela SES num painel
+(InfoSaúde) que o projeto não conseguiu extrair. Se a gestão das UPAs pressiona essa fila não é mensurável com estes dados.</div>
+</section>
+<section id="upas"><h2>4. As UPAs</h2>
+<p>O CNES tinha <b>4</b> unidades públicas de pronto atendimento no DF em 2012, <b>6</b> em 2020 e
+<b>13</b> em 2022, número que se mantém em 13 em agosto de 2026. O índice de contratos do IGES-DF publica
+contratos de gestão para 7 UPAs, assinados em 2021.</p>
+<figure><div class="leg"><span><i class="sw s1"></i>Unidades públicas de pronto atendimento</span></div><svg viewBox="0 0 720 260" role="img" aria-label="Unidades públicas de pronto atendimento no CNES"><line class="grid" x1="56" x2="704" y1="226.0" y2="226.0"/><text class="tk" x="50" y="230.0" text-anchor="end">0</text><line class="grid" x1="56" x2="704" y1="173.5" y2="173.5"/><text class="tk" x="50" y="177.5" text-anchor="end">4</text><line class="grid" x1="56" x2="704" y1="121.0" y2="121.0"/><text class="tk" x="50" y="125.0" text-anchor="end">8</text><line class="grid" x1="56" x2="704" y1="68.5" y2="68.5"/><text class="tk" x="50" y="72.5" text-anchor="end">12</text><line class="grid" x1="56" x2="704" y1="16.0" y2="16.0"/><text class="tk" x="50" y="20.0" text-anchor="end">16</text><rect class="s1" x="59.4" y="226.0" width="23.1" height="0.0"/><text class="tk" x="71.4" y="248" text-anchor="middle">05</text><rect class="s1" x="90.3" y="226.0" width="23.1" height="0.0"/><text class="tk" x="102.3" y="248" text-anchor="middle">06</text><rect class="s1" x="121.1" y="226.0" width="23.1" height="0.0"/><text class="tk" x="133.1" y="248" text-anchor="middle">07</text><rect class="s1" x="152.0" y="226.0" width="23.1" height="0.0"/><text class="tk" x="164.0" y="248" text-anchor="middle">08</text><rect class="s1" x="182.8" y="226.0" width="23.1" height="0.0"/><text class="tk" x="194.9" y="248" text-anchor="middle">09</text><rect class="s1" x="213.7" y="226.0" width="23.1" height="0.0"/><text class="tk" x="225.7" y="248" text-anchor="middle">10</text><rect class="s1" x="244.5" y="226.0" width="23.1" height="0.0"/><text class="tk" x="256.6" y="248" text-anchor="middle">11</text><rect class="s1" x="275.4" y="173.5" width="23.1" height="52.5"/><text class="tk" x="287.4" y="248" text-anchor="middle">12</text><rect class="s1" x="306.3" y="173.5" width="23.1" height="52.5"/><text class="tk" x="318.3" y="248" text-anchor="middle">13</text><rect class="s1" x="337.1" y="147.2" width="23.1" height="78.8"/><text class="tk" x="349.1" y="248" text-anchor="middle">14</text><rect class="s1" x="368.0" y="147.2" width="23.1" height="78.8"/><text class="tk" x="380.0" y="248" text-anchor="middle">15</text><rect class="s1" x="398.8" y="147.2" width="23.1" height="78.8"/><text class="tk" x="410.9" y="248" text-anchor="middle">16</text><rect class="s1" x="429.7" y="147.2" width="23.1" height="78.8"/><text class="tk" x="441.7" y="248" text-anchor="middle">17</text><rect class="s1" x="460.5" y="147.2" width="23.1" height="78.8"/><text class="tk" x="472.6" y="248" text-anchor="middle">18</text><rect class="s1" x="491.4" y="147.2" width="23.1" height="78.8"/><text class="tk" x="503.4" y="248" text-anchor="middle">19</text><rect class="s1" x="522.3" y="147.2" width="23.1" height="78.8"/><text class="tk" x="534.3" y="248" text-anchor="middle">20</text><rect class="s1" x="553.1" y="81.6" width="23.1" height="144.4"/><text class="tk" x="565.1" y="248" text-anchor="middle">21</text><rect class="s1" x="584.0" y="55.4" width="23.1" height="170.6"/><text class="tk" x="596.0" y="248" text-anchor="middle">22</text><rect class="s1" x="614.8" y="55.4" width="23.1" height="170.6"/><text class="tk" x="626.9" y="248" text-anchor="middle">23</text><rect class="s1" x="645.7" y="55.4" width="23.1" height="170.6"/><text class="tk" x="657.7" y="248" text-anchor="middle">24</text><rect class="s1" x="676.5" y="55.4" width="23.1" height="170.6"/><text class="tk" x="688.6" y="248" text-anchor="middle">25</text></svg>
+<figcaption>Estabelecimentos do tipo 73 (pronto atendimento) com natureza jurídica pública, dezembro de cada ano.</figcaption></figure>
+<div class="tw"><table><thead><tr><th>Contrato de gestão do IGES-DF (título publicado)</th></tr></thead><tbody><tr><td>Contrato de Gestão Nº 045458/2021 – UPA de Planaltina</td></tr><tr><td>Contrato de Gestão Nº 045547/2021 – UPA de Vicente Pires</td></tr><tr><td>Contrato de Gestão Nº 045549/2021 – UPA de Brazlândia</td></tr><tr><td>Contrato de Gestão Nº 045549/2021 – UPA de Ceilândia II</td></tr><tr><td>Contrato de Gestão Nº 045549/2021 – UPA de Gama</td></tr><tr><td>Contrato de Gestão Nº 045549/2021 – UPA de Paranoá</td></tr><tr><td>Contrato de Gestão Nº 045549/2021 – UPA de Riacho Fundo II</td></tr></tbody></table></div>
+<p class="src">Fontes: DATASUS, CNES, arquivos ST (estabelecimentos) e PF (profissionais) do DF, competência de dezembro de cada ano (2026: agosto), campo TP_UNID; tabela igesdf_contratos_gestao do saudedf (índice de documentos de igesdf.org.br).</p>
+<div class="lac"><b>Lacuna declarada — quem gere cada UPA</b>No CNES, as UPAs continuam cadastradas sob a raiz de CNPJ da SES, e
+não sob a do IGES-DF. O cadastro não diz qual UPA é operada pelo instituto; a única fonte é o título dos contratos acima.</div>
+</section>
+<section id="contas"><h2>5. Contas e auditoria</h2>
+<p>O IGES-DF publica demonstrações contábeis e relatórios de auditor independente. Desde o exercício de 2019, <b>todos</b> os
+pareceres localizados são <b>com ressalva</b>. As razões abaixo são as que o próprio auditor escreveu na base da ressalva.</p>
+<div class="tw"><table><thead><tr><th>Exercício</th><th>Opinião do auditor</th><th>Base da ressalva (resumo das palavras do auditor)</th></tr></thead><tbody><tr><td>2018</td><td>sem ressalva</td><td>—</td></tr><tr><td>2019</td><td>com ressalva</td><td>Operação Medusa (Polícia Civil do DF), contratos de 2018; estoques sem inventário físico</td></tr><tr><td>2020</td><td>com ressalva</td><td>Operação Medusa (Polícia Civil do DF), contratos de 2018; estoques sem inventário físico</td></tr><tr><td>2021</td><td>com ressalva</td><td>Operação Medusa (Polícia Civil do DF), contratos de 2018; estoques sem inventário físico</td></tr><tr><td>2022</td><td>com ressalva</td><td>Operação Escudeiro (Polícia Civil do DF), renovação de contrato; estoques sem inventário físico</td></tr><tr><td>2023</td><td>com ressalva</td><td>Operação Escudeiro (Polícia Civil do DF), renovação de contrato; estoques sem inventário físico</td></tr></tbody></table></div>
+<p class="src">Fonte: tabela opinioes_auditoria do saudedf; relatórios de auditor independente publicados em igesdf.org.br
+(2018: Instituto Hospital de Base). A ressalva registra uma limitação do auditor, não uma conclusão de irregularidade.</p>
+<div class="tw"><table><thead><tr><th>Exercício</th><th class=n>Patrimônio líquido</th><th class=n>Estoques</th></tr></thead><tbody><tr><td>2018</td><td class=n>R$ 15.967.370,59</td><td class=n>R$ 18.956.336,32</td></tr><tr><td>2019</td><td class=n>R$ -45.749.115,59</td><td class=n>—</td></tr><tr><td>2020</td><td class=n>—</td><td class=n>—</td></tr><tr><td>2021</td><td class=n>—</td><td class=n>R$ 43.959.076,22</td></tr><tr><td>2022</td><td class=n>R$ -129.721.162,12</td><td class=n>R$ 72.510.235,06</td></tr><tr><td>2023</td><td class=n>R$ -87.963.335,23</td><td class=n>R$ 89.087.283,30</td></tr></tbody></table></div>
+<p class="src">Fonte: tabela demonstracoes_serie do saudedf, lida dos balanços do IGES-DF. “—” = os documentos divergem entre si
+para aquele exercício, e o valor não é publicado.</p>
+<div class="lac"><b>Lacuna declarada — demonstrações do HCB</b>O saudedf não localizou demonstrações contábeis do HCB na página
+de transparência que lê (hcb.org.br). Não há como comparar o balanço dos dois.</div>
+<div class="lac"><b>Lacuna declarada — quanto a SES repassa a cada um</b>O saudedf tem o gasto liquidado da função saúde do GDF
+(R$ 3,75 bilhões em 2019, R$ 7,36 bilhões em 2025), mas não o repasse a cada contrato
+de gestão. Custo por leito e por internação de cada entidade ficam sem medida.</div>
+<div class="lac"><b>Fora do alcance — desvio de recursos</b>Desvio é uma conclusão de investigação ou de julgamento, não um dado.
+Este relatório não o mede. O que os documentos públicos mostram está acima: as ressalvas do auditor e as operações que ele cita.</div>
+</section>
+<section id="transparencia"><h2>6. Transparência e contratos</h2>
+<p>O projeto procurou os mesmos três tipos de documento nas páginas de transparência de cada entidade.</p>
+<div class="tw"><table><thead><tr><th>Documento</th><th>IGES-DF</th><th>HCB</th></tr></thead><tbody><tr><td>Contrato de gestão</td><td>localizado</td><td>localizado</td></tr><tr><td>Demonstrações contábeis</td><td>localizado</td><td>não localizado</td></tr><tr><td>Prestação de contas periódica</td><td>localizado</td><td>não localizado</td></tr></tbody></table></div>
+<p class="src">Fonte: tabelas transparencia_matriz e transparencia_indice_publicacao do saudedf. Medida própria do projeto,
+não um índice oficial. “Não localizado” quer dizer ausente nas páginas que o projeto lê, não prova de que o documento não existe.</p>
+<h3>Aditivos</h3>
+<p>O contrato de gestão 001/2018 do IGES-DF chegou ao <b>63º termo aditivo</b> publicado; o índice do instituto tem
+63 termos aditivos, 15 apostilamentos e 26 extratos.
+O HCB publica 121 documentos de termo aditivo, até o <b>62º</b>, 45 deles vinculados a emendas
+parlamentares.</p>
+<p class="src">Fontes: tabelas igesdf_contratos_gestao e hcb_contratos do saudedf (índices de documentos das duas páginas de transparência).</p>
+</section>
+<section id="metodo"><h2>Método e limites</h2>
+<p>Este relatório é independente do dossiê do projeto saudedf e usa só dados que o projeto já coletou, lidos sem alteração.
+Os microdados do SIH e do CNES foram descompactados numa pasta temporária e agregados por estabelecimento; nenhum arquivo do
+saudedf foi alterado. Nenhum nome, CPF ou CNS sai da análise.</p>
+<p>A pergunta que motivou o relatório inclui pontos que os dados públicos não alcançam: governança dos conselhos, trânsito de
+dirigentes, perfil de formação dos médicos, fila de UTI e desvio de recursos. Cada um aparece acima como lacuna, com o motivo.
+Nada é estimado. O código que gera cada número está em
+<a href="https://github.com/maximusminus/relatorios-saude-df/tree/main/analise">relatorios-saude-df/analise</a>.</p>
+</section>
+<div class="rep fim"><button type="button" data-relatar><span aria-hidden="true">⚑</span> Relatar problema ou sugestão</button></div>
+</div>
+<div id="modal-relatar" class="modal" hidden>
+<div class="modal-caixa" role="dialog" aria-modal="true" aria-labelledby="modal-titulo">
+<button type="button" class="fechar" id="modal-fechar" aria-label="Fechar">×</button>
+<h3 id="modal-titulo">Relatar problema ou sugestão</h3>
+<p class="nota">Sua mensagem é enviada por um serviço de terceiros (Web3Forms) direto ao operador do projeto;
+esta página não guarda nem lê o que você escrever.</p>
+<form id="form-relatar" class="form-relatar">
+<label for="relatar-mensagem">Mensagem<textarea id="relatar-mensagem" name="message" required rows="5"></textarea></label>
+<label for="relatar-email">Seu e-mail (opcional, para resposta)<input id="relatar-email" name="email" type="email"></label>
+<input type="hidden" name="subject" value="Relatórios Saúde DF — Relatório 02 — IGES-DF × HCB — relato ou sugestão">
+<input type="hidden" name="from_name" value="Relatórios Saúde DF">
+<input type="checkbox" name="botcheck" class="campo-oculto" tabindex="-1" autocomplete="off" aria-hidden="true">
+<p><button type="submit">Enviar</button></p>
+<p id="relatar-status" class="nota" role="status"></p>
+</form></div></div>
+<script>
+(function () {
+  var CHAVE = "596b7023-f2a3-4f29-8f0b-fb446fad4664", RELATORIO = "Relatório 02 — IGES-DF × HCB";
+  var m = document.getElementById('modal-relatar'), f = document.getElementById('form-relatar'),
+      st = document.getElementById('relatar-status'), origem = null;
+  function secao() {
+    var s = [].slice.call(document.querySelectorAll('section[id]')), y = window.scrollY + 120, a = '';
+    s.forEach(function (e) { if (e.offsetTop <= y) { a = e.id; } });
+    return a;
+  }
+  function abrir(ev) { origem = ev.currentTarget; st.textContent = ''; m.hidden = false;
+    document.getElementById('relatar-mensagem').focus(); }
+  function fechar() { m.hidden = true; if (origem) { origem.focus(); } }
+  [].forEach.call(document.querySelectorAll('[data-relatar]'), function (b) { b.addEventListener('click', abrir); });
+  document.getElementById('modal-fechar').addEventListener('click', fechar);
+  m.addEventListener('click', function (ev) { if (ev.target === m) { fechar(); } });
+  document.addEventListener('keydown', function (ev) { if (ev.key === 'Escape' && !m.hidden) { fechar(); } });
+  f.addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    var bt = f.querySelector('button[type=submit]');
+    if (f.botcheck.checked) { st.textContent = 'Mensagem enviada. Obrigado.'; f.reset(); return; }
+    var corpo = {access_key: CHAVE, message: f.message.value, email: f.email.value,
+      subject: f.subject.value, from_name: f.from_name.value,
+      estado: JSON.stringify({relatorio: RELATORIO, secao: secao(), pagina: location.href})};
+    bt.disabled = true; st.textContent = 'Enviando…';
+    fetch('https://api.web3forms.com/submit', {method: 'POST',
+      headers: {'Content-Type': 'application/json', Accept: 'application/json'}, body: JSON.stringify(corpo)})
+      .then(function (r) { return r.json(); })
+      .then(function (j) { bt.disabled = false;
+        if (j.success) { st.textContent = 'Mensagem enviada. Obrigado.'; f.reset(); }
+        else { st.textContent = 'Não foi possível enviar: ' + (j.message || 'erro desconhecido') + '. Tente novamente.'; } })
+      .catch(function (e) { bt.disabled = false;
+        st.textContent = 'Não foi possível enviar: ' + e.message + '. Tente novamente.'; });
+  });
+})();
+</script>
