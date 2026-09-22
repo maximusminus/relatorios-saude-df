@@ -1,0 +1,132 @@
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Relatórios Saúde DF</title>
+<meta name="description" content="Relatórios avulsos sobre a saúde pública no Distrito Federal, feitos só com dados públicos e com a fonte de cada número.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,650&family=Public+Sans:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+:root{--bg:#f5f6f3;--fg:#17211d;--mut:#56645e;--rule:#d5dbd6;--card:#ffffff;--a1:#11614f;--hl:#e5efe9;
+--serif:"Newsreader",Georgia,serif;--sans:"Public Sans",system-ui,sans-serif;--mono:"JetBrains Mono",ui-monospace,monospace}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--bg:#111714;--fg:#e4ebe7;--mut:#9aaaa2;--rule:#2b3632;--card:#18201d;--a1:#4fc0a2;--hl:#1b2a25}}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#111714;--fg:#e4ebe7;--mut:#9aaaa2;--rule:#2b3632;--card:#18201d;--a1:#4fc0a2;--hl:#1b2a25}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 var(--sans)}
+.wrap{max-width:980px;margin:0 auto;padding-inline:16px;padding-block:40px 64px}
+.kick{font:600 12px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--a1)}
+h1{font:650 clamp(36px,6vw,60px)/1.02 var(--serif);margin:.35em 0 .3em;text-wrap:balance;letter-spacing:-.01em}
+.lede{font-size:19px;max-width:62ch;color:var(--mut);margin:0 0 8px}
+.principios{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);margin:32px 0 40px}
+.principios div{background:var(--card);padding:16px 18px;font-size:14px;color:var(--mut)}
+.principios b{display:block;color:var(--fg);font-size:15px;margin-bottom:4px}
+h3{font:700 13px/1.3 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--mut);margin:0 0 12px}
+.lista{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:16px}
+.card{display:flex;flex-direction:column;gap:8px;background:var(--card);border:1px solid var(--rule);border-top:4px solid var(--a1);
+padding:20px;color:inherit;text-decoration:none;transition:background .15s}
+.card:hover,.card:focus-visible{background:var(--hl);outline:none}
+.card .num{font:600 12px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--a1)}
+.card h2{font:650 25px/1.15 var(--serif);margin:0;text-wrap:balance}
+.card p{margin:0;color:var(--mut);font-size:15px}
+.card .meta{font:12px/1.4 var(--mono);color:var(--mut);margin-top:auto;padding-top:8px}
+.card .ir{font-weight:600;font-size:14px;color:var(--a1)}
+footer{border-top:1px solid var(--rule);margin-top:48px;padding-top:20px;font-size:13px;color:var(--mut)}
+footer p{max-width:68ch}
+a{color:var(--a1)}
+.rep{display:flex;justify-content:flex-end;margin:12px 0 20px}
+.rep.fim{justify-content:center;margin:36px 0 8px}
+.rep button{display:inline-flex;align-items:center;gap:8px;background:#c8102e;color:#fff;cursor:pointer;
+font:600 14px/1 var(--sans,system-ui);padding:11px 16px;border-radius:6px;border:2px solid #c8102e}
+.rep button:hover,.rep button:focus-visible{background:#fff;color:#c8102e;outline:none}
+.modal{position:fixed;inset:0;background:rgba(10,15,30,.55);display:grid;place-items:center;z-index:20;padding:16px}
+.modal[hidden]{display:none}
+.modal-caixa{background:var(--card);color:var(--fg);border-radius:14px;max-width:560px;width:100%;
+max-height:88vh;overflow:auto;padding:24px;position:relative;box-shadow:0 20px 60px rgba(0,0,0,.35)}
+.modal-caixa h3{margin:0 0 8px}
+.fechar{position:absolute;top:10px;right:12px;font-size:26px;line-height:1;border:0;background:none;color:var(--mut);cursor:pointer}
+.form-relatar label{display:block;margin:12px 0;font-size:13px;color:var(--mut)}
+.form-relatar textarea,.form-relatar input[type=email]{width:100%;box-sizing:border-box;font:inherit;color:inherit;
+background:var(--card);border:1px solid var(--rule);border-radius:8px;padding:8px 10px;margin-top:4px;resize:vertical}
+.form-relatar button[type=submit]{background:#c8102e;color:#fff;border:2px solid #c8102e;border-radius:6px;
+padding:9px 16px;font:600 14px/1 var(--sans,system-ui);cursor:pointer}
+.form-relatar button[type=submit]:disabled{opacity:.6;cursor:wait}
+.nota{font-size:13px;color:var(--mut)}
+.campo-oculto{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+@media print{.rep,.modal{display:none!important}}
+</style>
+<div class="wrap">
+<div class="rep"><button type="button" data-relatar><span aria-hidden="true">⚑</span> Relatar problema ou sugestão</button></div>
+<div class="kick">Saúde no DF · relatórios avulsos</div>
+<h1>Relatórios sobre a saúde pública no Distrito Federal</h1>
+<p class="lede">Cada relatório faz um recorte sobre um tema e usa só dados públicos. A fonte de cada número está no próprio texto.</p>
+<div class="principios">
+<div><b>Dados públicos</b>Só bases oficiais já publicadas: folha de pagamento, DATASUS, IBGE, portais de transparência.</div>
+<div><b>Fonte em cada número</b>Cada número traz a base e o período de onde saiu.</div>
+<div><b>Nada estimado</b>Quando a fonte não publica um dado, o relatório diz que ele falta e não preenche o buraco.</div>
+<div><b>Sem dado pessoal</b>Só contagens e medianas. Nenhum nome, CPF ou matrícula é publicado.</div>
+</div>
+<h3>Relatórios publicados · 1</h3>
+<div class="lista">
+<a class="card" href="medicos/">
+<span class="num">Relatório 01</span>
+<h2>O médico da Secretaria de Saúde do DF</h2>
+<p>Quantos são, quanto ganham, quem está saindo, formação e residência médica.</p>
+<span class="meta">Folha da SES-DF, 01/2013 a 07/2026 · publicado em 09/2026</span>
+<span class="ir" aria-hidden="true">Ler relatório →</span>
+</a>
+</div>
+<footer>
+<p>O código que gera cada número está em
+<a href="https://github.com/maximusminus/relatorios-saude-df/tree/main/analise">relatorios-saude-df/analise</a>.
+Achou um erro ou tem uma sugestão? Use o botão vermelho.</p>
+<div class="rep fim"><button type="button" data-relatar><span aria-hidden="true">⚑</span> Relatar problema ou sugestão</button></div>
+</footer>
+</div>
+<div id="modal-relatar" class="modal" hidden>
+<div class="modal-caixa" role="dialog" aria-modal="true" aria-labelledby="modal-titulo">
+<button type="button" class="fechar" id="modal-fechar" aria-label="Fechar">×</button>
+<h3 id="modal-titulo">Relatar problema ou sugestão</h3>
+<p class="nota">Sua mensagem é enviada por um serviço de terceiros (Web3Forms) direto ao operador do projeto;
+esta página não guarda nem lê o que você escrever.</p>
+<form id="form-relatar" class="form-relatar">
+<label for="relatar-mensagem">Mensagem<textarea id="relatar-mensagem" name="message" required rows="5"></textarea></label>
+<label for="relatar-email">Seu e-mail (opcional, para resposta)<input id="relatar-email" name="email" type="email"></label>
+<input type="hidden" name="subject" value="Relatórios Saúde DF — Página inicial — relato ou sugestão">
+<input type="hidden" name="from_name" value="Relatórios Saúde DF">
+<input type="checkbox" name="botcheck" class="campo-oculto" tabindex="-1" autocomplete="off" aria-hidden="true">
+<p><button type="submit">Enviar</button></p>
+<p id="relatar-status" class="nota" role="status"></p>
+</form></div></div>
+<script>
+(function () {
+  var CHAVE = "596b7023-f2a3-4f29-8f0b-fb446fad4664", RELATORIO = "Página inicial";
+  var m = document.getElementById('modal-relatar'), f = document.getElementById('form-relatar'),
+      st = document.getElementById('relatar-status'), origem = null;
+  function secao() {
+    var s = [].slice.call(document.querySelectorAll('section[id]')), y = window.scrollY + 120, a = '';
+    s.forEach(function (e) { if (e.offsetTop <= y) { a = e.id; } });
+    return a;
+  }
+  function abrir(ev) { origem = ev.currentTarget; st.textContent = ''; m.hidden = false;
+    document.getElementById('relatar-mensagem').focus(); }
+  function fechar() { m.hidden = true; if (origem) { origem.focus(); } }
+  [].forEach.call(document.querySelectorAll('[data-relatar]'), function (b) { b.addEventListener('click', abrir); });
+  document.getElementById('modal-fechar').addEventListener('click', fechar);
+  m.addEventListener('click', function (ev) { if (ev.target === m) { fechar(); } });
+  document.addEventListener('keydown', function (ev) { if (ev.key === 'Escape' && !m.hidden) { fechar(); } });
+  f.addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    var bt = f.querySelector('button[type=submit]');
+    if (f.botcheck.checked) { st.textContent = 'Mensagem enviada. Obrigado.'; f.reset(); return; }
+    var corpo = {access_key: CHAVE, message: f.message.value, email: f.email.value,
+      subject: f.subject.value, from_name: f.from_name.value,
+      estado: JSON.stringify({relatorio: RELATORIO, secao: secao(), pagina: location.href})};
+    bt.disabled = true; st.textContent = 'Enviando…';
+    fetch('https://api.web3forms.com/submit', {method: 'POST',
+      headers: {'Content-Type': 'application/json', Accept: 'application/json'}, body: JSON.stringify(corpo)})
+      .then(function (r) { return r.json(); })
+      .then(function (j) { bt.disabled = false;
+        if (j.success) { st.textContent = 'Mensagem enviada. Obrigado.'; f.reset(); }
+        else { st.textContent = 'Não foi possível enviar: ' + (j.message || 'erro desconhecido') + '. Tente novamente.'; } })
+      .catch(function (e) { bt.disabled = false;
+        st.textContent = 'Não foi possível enviar: ' + e.message + '. Tente novamente.'; });
+  });
+})();
+</script>
