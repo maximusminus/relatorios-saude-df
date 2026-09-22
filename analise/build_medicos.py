@@ -5,6 +5,9 @@ import json, sqlite3, statistics, collections, os, html
 BASE = os.path.expanduser('~/relatorios')
 DB = 'file:/home/saudedf/dados/database/saudedf.sqlite?mode=ro'
 c = sqlite3.connect(DB, uri=True)
+from reportar import CSS as REP_CSS, botao
+REL = 'Relatório 01 — O médico da SES-DF'
+URL = 'https://maximusminus.github.io/relatorios-saude-df/medicos/'
 F = json.load(open(f'{BASE}/analise/fluxo_medicos.json'))
 mensal = F['mensal']
 
@@ -215,8 +218,10 @@ td.n,th.n{{text-align:right;font-family:var(--mono);font-variant-numeric:tabular
 .src{{font-size:12.5px;color:var(--mut);font-family:var(--mono);max-width:none;word-break:break-word}}
 .two{{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}}
 a{{color:var(--a1)}}
+'''+REP_CSS+f'''
 </style>
 <div class="wrap">
+{botao(REL, URL)}
 <div class="kick">Relatório 01 · Saúde no DF · corte sobre a figura do médico</div>
 <h1>O médico da Secretaria de Saúde do DF</h1>
 <p class="lede">Quantos médicos a SES-DF tem de fato, quanto eles recebem, quem está saindo, de onde vem a formação e quantos
@@ -350,6 +355,7 @@ Nenhum nome, CPF ou matrícula sai da análise: o código publica só contagens 
 <p>Não há estimativa em lugar nenhum. Onde a fonte não publica, a lacuna aparece como lacuna. O código que gera cada número
 está em <a href="https://github.com/maximusminus/relatorios-saude-df/tree/main/analise">relatorios-saude-df/analise</a>.</p>
 </section>
+{botao(REL, URL, fim=True)}
 </div>''')
 
 os.makedirs(f'{BASE}/medicos', exist_ok=True)
