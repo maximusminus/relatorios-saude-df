@@ -85,6 +85,17 @@ LAB_T = {'contrato_gestao': 'Contrato de gestão', 'prestacao_contas_periodica':
 SIHSRC = 'DATASUS, SIH/SUS, AIH reduzida (RD), DF, arquivos RDDF&lt;aamm&gt;.dbc de 01/2008 a 12/2024, agregados por CNES do estabelecimento'
 CNESSRC = 'DATASUS, CNES, arquivos ST (estabelecimentos) e PF (profissionais) do DF, competência de dezembro de cada ano (2026: agosto)'
 
+
+REP = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'repasses.json')))
+rep = C.Counter(); tot_rep = C.Counter(); fs = 0
+for r in REP['linhas']:
+    rep[(r['entidade'], r['ano'])] += r['valorFinal']; tot_rep[r['entidade']] += r['valorFinal']
+    if r['entidade'] == 'IGES-DF' and 'FUNDO DE SAÚDE' in r['nomeUnidadeGestora']: fs += r['valorFinal']
+fs_iges = fs / tot_rep['IGES-DF']
+anos_rep = list(range(2011, 2027))
+g_rep = linhas([{'v': [(rep.get((e, a)) or 0) / 1e6 or None for a in anos_rep], 'cls': c} for e, c in (('IGES-DF', 's1'), ('ICIPE (HCB)', 's3'))],
+               [str(a) for a in anos_rep], ticks_x=list(range(0, 16, 3)), titulo='Ordens bancárias pagas, R$ milhões')
+
 # ---------- gráficos ----------
 G = [('hbdf', 's1', 'HBDF'), ('hrsm', 's2', 'HRSM'), ('hcb', 's3', 'HCB')]
 lab_s = [str(a) for a in anos_sih]
@@ -211,15 +222,31 @@ pareceres localizados são <b>com ressalva</b>. As razões abaixo são as que o 
 para aquele exercício, e o valor não é publicado.</p>
 <div class="lac"><b>Lacuna declarada — demonstrações do HCB</b>O saudedf não localizou demonstrações contábeis do HCB na página
 de transparência que lê (hcb.org.br). Não há como comparar o balanço dos dois.</div>
-<div class="lac"><b>Lacuna declarada — quanto a SES repassa a cada um</b>O saudedf tem o gasto liquidado da função saúde do GDF
-(R$ {br(orc[2019]/1e9,2)} bilhões em 2019, R$ {br(orc[max(orc)]/1e9,2)} bilhões em {max(orc)}), mas não o repasse a cada contrato
-de gestão. Custo por leito e por internação de cada entidade ficam sem medida.</div>
+</section>''')
+
+# 5b — repasses
+w(f'''<section id="repasses"><h2>6. Quanto o GDF pagou a cada um</h2>
+<p>O Portal da Transparência do GDF lista as ordens bancárias por credor. Somadas por ano, as pagas ao IGES-DF
+(CNPJ 28.481.233/0001-72) e ao Instituto do Câncer Infantil e Pediatria Especializada (ICIPE, CNPJ 10.942.995/0001-63), que opera o HCB,
+foram de <b>R$ {br(rep[('IGES-DF',2024)]/1e9,2)} bilhão</b> e <b>R$ {br(rep[('ICIPE (HCB)',2024)]/1e6,0)} milhões</b> em 2024.
+Dos R$ {br(tot_rep['IGES-DF']/1e9,2)} bilhões pagos ao IGES-DF desde 2018, {br(100*fs_iges,1)}% saíram do Fundo de Saúde do DF.</p>
+<figure>{legenda([('s1','IGES-DF'),('s3','ICIPE (HCB)')])}{g_rep}
+<figcaption>Ordens bancárias pagas pelo GDF a cada entidade, R$ milhões nominais por ano (2026: até a data da coleta).</figcaption></figure>
+{tabela(['Ano', 'IGES-DF (R$)', 'ICIPE — HCB (R$)'], [[a, cel(rep.get(('IGES-DF',a)) or None, lambda v,d: rs(v)), cel(rep.get(('ICIPE (HCB)',a)) or None, lambda v,d: rs(v))] for a in anos_rep], (1,2))}
+<p class="src">Fonte: Portal da Transparência do GDF, consulta “Pagamentos” (ordens bancárias por credor), endpoint
+/api/despesa/ob-por-credor, exercícios 2009–2026, coletado em {REP['coletado_em'][8:]}/{REP['coletado_em'][5:7]}/{REP['coletado_em'][:4]}. Valor final = valor do evento menos cancelamentos. Valores
+nominais, sem correção. “—” = nenhuma ordem bancária ao credor no ano. O ICIPE aparece como parte dos contratos de gestão
+que o próprio HCB publica (tabela hcb_contratos do saudedf, ex.: “termo aditivo CG SES ICIPE”).</p>
+<div class="lac"><b>Leia com cuidado</b>O pagamento ao ICIPE cai de R$ {br(rep[('ICIPE (HCB)',2022)]/1e6,0)} milhões em 2022 para
+R$ {br(rep[('ICIPE (HCB)',2023)]/1e6,0)} milhões em 2023 e volta a R$ {br(rep[('ICIPE (HCB)',2024)]/1e6,0)} milhões em 2024. A consulta foi repetida com outras grafias do
+credor, sem outro registro. O portal não explica a queda, e este relatório não a estima. O valor pago também não mede o custo de um
+leito ou de uma internação: o IGES-DF opera dois hospitais e UPAs, e o pagamento cobre tudo o que cada contrato inclui.</div>
 <div class="lac"><b>Fora do alcance — desvio de recursos</b>Desvio é uma conclusão de investigação ou de julgamento, não um dado.
 Este relatório não o mede. O que os documentos públicos mostram está acima: as ressalvas do auditor e as operações que ele cita.</div>
 </section>''')
 
 # 6 — transparência e contratos
-w(f'''<section id="transparencia"><h2>6. Transparência e contratos</h2>
+w(f'''<section id="transparencia"><h2>7. Transparência e contratos</h2>
 <p>O projeto procurou os mesmos três tipos de documento nas páginas de transparência de cada entidade.</p>
 {tabela(['Documento', 'IGES-DF', 'HCB'],
   [[LAB_T.get(t, t), *[('localizado' if dict(((e, p) for tt, e, p in matriz if tt == t)).get(ent) == 'sim' else 'não localizado') for ent in ('IGES-DF', 'HCB')]]
@@ -235,7 +262,8 @@ parlamentares.</p>
 </section>''')
 
 w(f'''<section id="metodo"><h2>Método e limites</h2>
-<p>Este relatório é independente do dossiê do projeto saudedf e usa só dados que o projeto já coletou, lidos sem alteração.
+<p>Este relatório é independente do dossiê do projeto saudedf e usa dados que o projeto já coletou, lidos sem alteração,
+e uma consulta própria ao Portal da Transparência do GDF (seção 6), feita só para os dois credores, sem pessoas físicas.
 Os microdados do SIH e do CNES foram descompactados numa pasta temporária e agregados por estabelecimento; nenhum arquivo do
 saudedf foi alterado. Nenhum nome, CPF ou CNS sai da análise.</p>
 <p>A pergunta que motivou o relatório inclui pontos que os dados públicos não alcançam: governança dos conselhos, trânsito de

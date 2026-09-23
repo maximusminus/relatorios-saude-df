@@ -1,0 +1,266 @@
+{
+ "fonte": "https://www.transparencia.df.gov.br/api/despesa/ob-por-credor",
+ "coletado_em": "2026-09-23",
+ "linhas": [
+  {
+   "entidade": "IGES-DF",
+   "ano": 2018,
+   "codigoCredor": "28481233000172",
+   "nomeUnidadeGestora": "FUNDO DE SAÚDE DO DISTRITO FEDERAL",
+   "nomeUnidadeGestoraLiquidante": "SECRETARIA DE ESTADO DE SAÚDE DO DISTRITO FEDERAL",
+   "valorEvento": 128272898.0,
+   "valorCancelado": -12911294.09,
+   "valorFinal": 115361603.91
+  },
+  {
+   "entidade": "IGES-DF",
+   "ano": 2019,
+   "codigoCredor": "28481233000172",
+   "nomeUnidadeGestora": "FUNDO DE SAÚDE DO DISTRITO FEDERAL",
+   "nomeUnidadeGestoraLiquidante": "SECRETARIA DE ESTADO DE SAÚDE DO DISTRITO FEDERAL",
+   "valorEvento": 463734346.12,
+   "valorCancelado": -61032312.5,
+   "valorFinal": 402702033.62
+  },
+  {
+   "entidade": "IGES-DF",
+   "ano": 2019,
+   "codigoCredor": "28481233000172",
+   "nomeUnidadeGestora": "SECR. DE ESTADO DE ECONOMIA DO DF",
+   "nomeUnidadeGestoraLiquidante": "SECRETARIA DE ESTADO DE SAÚDE DO DISTRITO FEDERAL",
+   "valorEvento": 12911294.09,
+   "valorCancelado": 0.0,
+   "valorFinal": 12911294.09
+  },
+  {
+   "entidade": "IGES-DF",
+   "ano": 2020,
+   "codigoCredor": "28481233000172",
+   "nomeUnidadeGestora": "FUNDO DE SAÚDE DO DISTRITO FEDERAL",
+   "nomeUnidadeGestoraLiquidante": "SECRETARIA DE ESTADO DE SAÚDE DO DISTRITO FEDERAL",
+   "valorEvento": 709521963.56,
+   "valorCancelado": 0.0,
+   "valorFinal": 709521963.56
+  },
+  {
+   "entidade": "IGES-DF",
+   "ano": 2021,
+   "codigoCredor": "28481233000172",
+   "nomeUnidadeGestora": "FUNDO DE SAÚDE DO DISTRITO FEDERAL",
+   "nomeUnidadeGestoraLiquidante": "SECRETARIA DE ESTADO DE SAÚDE DO DISTRITO FEDERAL",
+   "valorEvento": 997501579.18,
+   "valorCancelado": -1010000.0,
+   "valorFinal": 996491579.18
+  },
+  {
+   "entidade": "IGES-DF",
+   "ano": 2022,
+   "codigoCredor": "28481233000172",
+   "nomeUnidadeGestora": "FUNDO DE SAÚDE DO DISTRITO FEDERAL",
+   "nomeUnidadeGestoraLiquidante": "SECRETARIA DE ESTADO DE SAÚDE DO DISTRITO FEDERAL",
+   "valorEvento": 1340245340.7,
+   "valorCancelado": -100214198.94,
+   "valorFinal": 1240031141.76
+  },
+  {
+   "entidade": "IGES-DF",
+   "ano": 2023,
+   "codigoCredor": "28481233000172",
+   "nomeUnidadeGestora": "FUNDO DE SAÚDE DO DISTRITO FEDERAL",
+   "nomeUnidadeGestoraLiquidante": "SECRETARIA DE ESTADO DE SAÚDE DO DISTRITO FEDERAL",
+   "valorEvento": 1018077936.28,
+   "valorCancelado": -14321879.0,
+   "valorFinal": 1003756057.28
+  },
+  {
+   "entidade": "IGES-DF",
+   "ano": 2024,
+   "codigoCredor": "28481233000172",
+   "nomeUnidadeGestora": "FUNDO DE SAÚDE DO DISTRITO FEDERAL",
+   "nomeUnidadeGestoraLiquidante": "SECRETARIA DE ESTADO DE SAÚDE DO DISTRITO FEDERAL",
+   "valorEvento": 1219518765.01,
+   "valorCancelado": -103613041.81,
+   "valorFinal": 1115905723.2
+  },
+  {
+   "entidade": "IGES-DF",
+   "ano": 2025,
+   "codigoCredor": "28481233000172",
+   "nomeUnidadeGestora": "FUNDO DE SAÚDE DO DISTRITO FEDERAL",
+   "nomeUnidadeGestoraLiquidante": "SECRETARIA DE ESTADO DE SAÚDE DO DISTRITO FEDERAL",
+   "valorEvento": 1182134636.22,
+   "valorCancelado": -3186085.64,
+   "valorFinal": 1178948550.58
+  },
+  {
+   "entidade": "IGES-DF",
+   "ano": 2026,
+   "codigoCredor": "28481233000172",
+   "nomeUnidadeGestora": "FUNDO DE SAÚDE DO DISTRITO FEDERAL",
+   "nomeUnidadeGestoraLiquidante": "SECRETARIA DE ESTADO DE SAÚDE DO DISTRITO FEDERAL",
+   "valorEvento": 883321666.22,
+   "valorCancelado": -20900000.0,
+   "valorFinal": 862421666.22
+  },
+  {
+   "entidade": "ICIPE (HCB)",
+   "ano": 2011,
+   "codigoCredor": "10942995000163",
+   "nomeUnidadeGestora": "FUNDO DE SAÚDE DO DISTRITO FEDERAL",
+   "nomeUnidadeGestoraLiquidante": "SECRETARIA DE ESTADO DE SAÚDE DO DISTRITO FEDERAL",
+   "valorEvento": 20320320.06,
+   "valorCancelado": -5134828.25,
+   "valorFinal": 15185491.81
+  },
+  {
+   "entidade": "ICIPE (HCB)",
+   "ano": 2012,
+   "codigoCredor": "10942995000163",
+   "nomeUnidadeGestora": "FUNDO DE SAÚDE DO DISTRITO FEDERAL",
+   "nomeUnidadeGestoraLiquidante": "SECRETARIA DE ESTADO DE SAÚDE DO DISTRITO FEDERAL",
+   "valorEvento": 42287315.29,
+   "valorCancelado": 0.0,
+   "valorFinal": 42287315.29
+  },
+  {
+   "entidade": "ICIPE (HCB)",
+   "ano": 2013,
+   "codigoCredor": "10942995000163",
+   "nomeUnidadeGestora": "FUNDO DE SAÚDE DO DISTRITO FEDERAL",
+   "nomeUnidadeGestoraLiquidante": "SECRETARIA DE ESTADO DE SAÚDE DO DISTRITO FEDERAL",
+   "valorEvento": 35067619.56,
+   "valorCancelado": 0.0,
+   "valorFinal": 35067619.56
+  },
+  {
+   "entidade": "ICIPE (HCB)",
+   "ano": 2014,
+   "codigoCredor": "10942995000163",
+   "nomeUnidadeGestora": "FUNDO DE SAÚDE DO DISTRITO FEDERAL",
+   "nomeUnidadeGestoraLiquidante": "SECRETARIA DE ESTADO DE SAÚDE DO DISTRITO FEDERAL",
+   "valorEvento": 58219325.06,
+   "valorCancelado": -5337777.06,
+   "valorFinal": 52881548.0
+  },
+  {
+   "entidade": "ICIPE (HCB)",
+   "ano": 2015,
+   "codigoCredor": "10942995000163",
+   "nomeUnidadeGestora": "FUNDO DE SAÚDE DO DISTRITO FEDERAL",
+   "nomeUnidadeGestoraLiquidante": "SECRETARIA DE ESTADO DE SAÚDE DO DISTRITO FEDERAL",
+   "valorEvento": 86605651.56,
+   "valorCancelado": -7000000.0,
+   "valorFinal": 79605651.56
+  },
+  {
+   "entidade": "ICIPE (HCB)",
+   "ano": 2016,
+   "codigoCredor": "10942995000163",
+   "nomeUnidadeGestora": "FUNDO DE SAÚDE DO DISTRITO FEDERAL",
+   "nomeUnidadeGestoraLiquidante": "SECRETARIA DE ESTADO DE SAÚDE DO DISTRITO FEDERAL",
+   "valorEvento": 80964600.47,
+   "valorCancelado": -6631710.56,
+   "valorFinal": 74332889.91
+  },
+  {
+   "entidade": "ICIPE (HCB)",
+   "ano": 2017,
+   "codigoCredor": "10942995000163",
+   "nomeUnidadeGestora": "FUNDO DE SAÚDE DO DISTRITO FEDERAL",
+   "nomeUnidadeGestoraLiquidante": "SECRETARIA DE ESTADO DE SAÚDE DO DISTRITO FEDERAL",
+   "valorEvento": 109627917.96,
+   "valorCancelado": 0.0,
+   "valorFinal": 109627917.96
+  },
+  {
+   "entidade": "ICIPE (HCB)",
+   "ano": 2018,
+   "codigoCredor": "10942995000163",
+   "nomeUnidadeGestora": "FUNDO DE SAÚDE DO DISTRITO FEDERAL",
+   "nomeUnidadeGestoraLiquidante": "SECRETARIA DE ESTADO DE SAÚDE DO DISTRITO FEDERAL",
+   "valorEvento": 136277159.6,
+   "valorCancelado": -15868406.13,
+   "valorFinal": 120408753.47
+  },
+  {
+   "entidade": "ICIPE (HCB)",
+   "ano": 2019,
+   "codigoCredor": "10942995000163",
+   "nomeUnidadeGestora": "FUNDO DE SAÚDE DO DISTRITO FEDERAL",
+   "nomeUnidadeGestoraLiquidante": "SECRETARIA DE ESTADO DE SAÚDE DO DISTRITO FEDERAL",
+   "valorEvento": 205728734.23,
+   "valorCancelado": -20369168.07,
+   "valorFinal": 185359566.16
+  },
+  {
+   "entidade": "ICIPE (HCB)",
+   "ano": 2020,
+   "codigoCredor": "10942995000163",
+   "nomeUnidadeGestora": "FUNDO DE SAÚDE DO DISTRITO FEDERAL",
+   "nomeUnidadeGestoraLiquidante": "SECRETARIA DE ESTADO DE SAÚDE DO DISTRITO FEDERAL",
+   "valorEvento": 257349760.82,
+   "valorCancelado": -4474370.03,
+   "valorFinal": 252875390.79
+  },
+  {
+   "entidade": "ICIPE (HCB)",
+   "ano": 2021,
+   "codigoCredor": "10942995000163",
+   "nomeUnidadeGestora": "FUNDO DE SAÚDE DO DISTRITO FEDERAL",
+   "nomeUnidadeGestoraLiquidante": "SECRETARIA DE ESTADO DE SAÚDE DO DISTRITO FEDERAL",
+   "valorEvento": 284483164.07,
+   "valorCancelado": 0.0,
+   "valorFinal": 284483164.07
+  },
+  {
+   "entidade": "ICIPE (HCB)",
+   "ano": 2022,
+   "codigoCredor": "10942995000163",
+   "nomeUnidadeGestora": "FUNDO DE SAÚDE DO DISTRITO FEDERAL",
+   "nomeUnidadeGestoraLiquidante": "SECRETARIA DE ESTADO DE SAÚDE DO DISTRITO FEDERAL",
+   "valorEvento": 343316128.94,
+   "valorCancelado": -45681988.89,
+   "valorFinal": 297634140.05
+  },
+  {
+   "entidade": "ICIPE (HCB)",
+   "ano": 2023,
+   "codigoCredor": "10942995000163",
+   "nomeUnidadeGestora": "FUNDO DE SAÚDE DO DISTRITO FEDERAL",
+   "nomeUnidadeGestoraLiquidante": "SECRETARIA DE ESTADO DE SAÚDE DO DISTRITO FEDERAL",
+   "valorEvento": 59295982.43,
+   "valorCancelado": 0.0,
+   "valorFinal": 59295982.43
+  },
+  {
+   "entidade": "ICIPE (HCB)",
+   "ano": 2024,
+   "codigoCredor": "10942995000163",
+   "nomeUnidadeGestora": "FUNDO DE SAÚDE DO DISTRITO FEDERAL",
+   "nomeUnidadeGestoraLiquidante": "SECRETARIA DE ESTADO DE SAÚDE DO DISTRITO FEDERAL",
+   "valorEvento": 230001531.47,
+   "valorCancelado": -36890380.47,
+   "valorFinal": 193111151.0
+  },
+  {
+   "entidade": "ICIPE (HCB)",
+   "ano": 2025,
+   "codigoCredor": "10942995000163",
+   "nomeUnidadeGestora": "FUNDO DE SAÚDE DO DISTRITO FEDERAL",
+   "nomeUnidadeGestoraLiquidante": "SECRETARIA DE ESTADO DE SAÚDE DO DISTRITO FEDERAL",
+   "valorEvento": 232215969.61,
+   "valorCancelado": -2610440.2,
+   "valorFinal": 229605529.41
+  },
+  {
+   "entidade": "ICIPE (HCB)",
+   "ano": 2026,
+   "codigoCredor": "10942995000163",
+   "nomeUnidadeGestora": "FUNDO DE SAÚDE DO DISTRITO FEDERAL",
+   "nomeUnidadeGestoraLiquidante": "SECRETARIA DE ESTADO DE SAÚDE DO DISTRITO FEDERAL",
+   "valorEvento": 143437496.29,
+   "valorCancelado": 0.0,
+   "valorFinal": 143437496.29
+  }
+ ]
+}
