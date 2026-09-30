@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pedidos de acesso à informação — Relatórios Saúde DF</title>
+<meta name="description" content="O que não é publicado, a quem se pediu e em que termos — os pedidos redigidos, prontos para protocolar.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,650&family=Public+Sans:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="../estilo.css">
+</head>
+<body>
+<div class="wrap">
+<div class="rep"><a href="mailto:sinapseagentes@gmail.com?subject=Relat%C3%B3rios%20Sa%C3%BAde%20DF%20%E2%80%94%20Pedidos%20de%20acesso%20%C3%A0%20informa%C3%A7%C3%A3o%20%E2%80%94%20relato%20ou%20sugest%C3%A3o&amp;body=Descreva%20o%20problema%20encontrado%20ou%20a%20sugest%C3%A3o.%0A%0ASe%20for%20sobre%20um%20n%C3%BAmero%2C%20copie%20a%20frase%20ou%20a%20linha%20da%20tabela%20em%20que%20ele%20aparece.%0A%0A---%0ARelat%C3%B3rio%3A%20Pedidos%20de%20acesso%20%C3%A0%20informa%C3%A7%C3%A3o%0A" data-relatar><span aria-hidden="true">⚑</span> Relatar problema ou sugestão</a></div>
+<p><a class="voltar" href="../">← todos os relatórios</a></p>
+<div class="kick">Saúde no DF · relatório 05</div>
+<h1>Pedidos de acesso à informação — minutas</h1>
+<p>Três lacunas do levantamento não têm mais rota técnica: o dado existe, um órgão o detém, e só um pedido formal — feito por uma pessoa, nunca por este código — pode alcançá-lo. Este documento <strong>redige</strong> os três pedidos. <strong>Redigir não é protocolar</strong>: nenhum destes pedidos foi enviado a partir deste repositório, nenhuma rede foi contatada para produzi-lo, e o campo "Protocolo" de cada seção fica em branco até que o operador o protocole e preencha o número aqui. Nenhum estado de cobertura muda por um pedido existir — só a chegada de um documento respondido, pelo caminho de ingestão manual (<code>dados/raw/manual/</code>, lido por <code>processamento próprio</code>), move uma linha de cobertura.</p>
+<p>Base legal comum aos três: <strong>Lei nº 12.527/2011</strong> (Lei de Acesso à Informação), art. 10 e art. 11, c/c o <strong>Decreto Distrital nº 34.276/2013</strong>, que regulamenta a LAI no âmbito do Distrito Federal.</p>
+<hr>
+<section id="1-pain-is-de-regula-o-fila-sisreg-ses-df">
+<h2>1 — Painéis de regulação (fila SISREG), SES-DF</h2>
+<p><strong>Destinatário:</strong> Secretaria de Estado de Saúde do Distrito Federal (SES-DF), Comitê Interno de Gestão da Assistência à Saúde (CIEGES) ou unidade de ouvidoria/SIC que a SES-DF indicar para o recebimento de pedidos LAI.</p>
+<p><strong>Artefato pedido:</strong> os dados publicamente listados, porém protegidos por login, dos seis painéis CIEGES de regulação hospedados em <code>info.saude.df.gov.br</code>, na íntegra ou em extrato exportável, para o período mais recente disponível e, quando possível, retroativo aos últimos 12 meses:</p>
+<div class="tabela"><table><thead><tr><th>Painel</th><th>Id publicado</th></tr></thead><tbody><tr><td>Fila SISREG</td><td>20334</td></tr><tr><td>Projeção das Filas de Espera</td><td>21575</td></tr><tr><td>Marcações SISREG</td><td>20385</td></tr><tr><td>Cirurgias SISREG</td><td>21205</td></tr><tr><td>Consulta OCIs</td><td>20483</td></tr><tr><td>Monitoramentos de Cirurgias</td><td>26970</td></tr></tbody></table></div>
+<p><strong>Fundamentação:</strong> os seis painéis são medidos, publicamente listados no índice do próprio host, e todos os seis redirecionam para autenticação (<code>wp-login.php</code>) — a SES-DF opera e divulga os painéis; não se trata de um dado inexistente ou não compilado, e sim de um dado existente atrás de login. <code>processamento próprio</code> (<code>sondas()</code>) registra essa medição.</p>
+<p><strong>Protocolo:</strong> _(em branco — preencher quando protocolado)_ <strong>Data do protocolo:</strong> _(em branco)_</p>
+<hr>
+</section>
+<section id="2-demonstra-es-cont-beis-auditadas-do-hcb-via-se">
+<h2>2 — Demonstrações contábeis auditadas do HCB, via SES-DF</h2>
+<p><strong>Destinatário:</strong> Secretaria de Estado de Saúde do Distrito Federal (SES-DF), como <strong>contratante</strong> do contrato de gestão CG 076/2019 com o Instituto de Cardiologia e Transplantes Prof. Ismael Pinheiro Evangelista (ICIPE), operador do Hospital de Base de Brasília (HCB).</p>
+<p><strong>Artefato pedido:</strong> as demonstrações contábeis auditadas do HCB/ICIPE relativas à execução do contrato de gestão CG 076/2019, todos os exercícios disponíveis, incluindo o parecer da auditoria independente, tal como prestadas pelo ICIPE à SES-DF em cumprimento ao dever de prestação de contas do contrato de gestão.</p>
+<p><strong>Fundamentação:</strong> <code>hcb.org.br/transparencia/demonstracoes-contabeis/</code> devolve HTTP 200 com 33.886 bytes — o mesmo número de bytes, byte a byte, de um endereço que não pode existir naquele host: é o catch-all do site, não uma página publicada, e a página nunca existiu. O ICIPE é uma associação privada e pode simplesmente não responder a um pedido LAI dirigido a ele. A SES-DF, ao contrário, é a contratante do contrato de gestão — o próprio contrato obriga o ICIPE a prestar contas A ELA — e a SES-DF, diferente do ICIPE, está sujeita à Lei de Acesso à Informação. O pedido é, portanto, por um documento que a SES-DF já detém, não por um documento a ser produzido pelo ICIPE.</p>
+<p><strong>Protocolo:</strong> _(em branco — preencher quando protocolado)_ <strong>Data do protocolo:</strong> _(em branco)_</p>
+<hr>
+</section>
+<section id="3-s-rie-hist-rica-de-registros-ativos-crm-df">
+<h2>3 — Série histórica de registros ativos, CRM-DF</h2>
+<p><strong>Destinatário:</strong> Conselho Regional de Medicina do Distrito Federal (CRM-DF).</p>
+<p><strong>Artefato pedido:</strong> a série histórica, ano a ano, do número de médicos com registro ativo no Distrito Federal (CRM-DF), pelo maior período que o conselho conservar em seus próprios registros administrativos.</p>
+<p><strong>Fundamentação:</strong> <code>crmdf.org.br</code> responde e é navegável, mas não publica uma série agregada — o que existe é a busca individual por médico, protegida por reCAPTCHA validado no servidor, que este projeto se recusa a automatizar (o mesmo limite aplicado ao CFM). Não há interface própria do publicador (<code>robots.txt</code>, <code>sitemap.xml</code>, API REST) que aponte para uma série agregada; <code>processamento próprio</code> (<code>_sonda_crmdf</code>) mede isso a cada execução. O único levantamento hoje disponível é de terceiro (AMB, <em>Demografia Médica 2025</em>), que conta inscrições e não registros ativos — uma proxy, nunca a série do próprio conselho. O trabalho que estabeleceu o que o CRM-DF publica e não publica é o da apuração de 2026-09-21 deste repositório; este pedido não repete essa investigação, só a converte em requerimento.</p>
+<p><strong>Protocolo:</strong> _(em branco — preencher quando protocolado)_ <strong>Data do protocolo:</strong> _(em branco)_</p>
+</section>
+<footer>
+<p>Cada número desta página tem a sua fonte no próprio texto. Nenhum valor é estimado, e o que a fonte não publica está declarado como lacuna.</p>
+<div class="rep fim"><a href="mailto:sinapseagentes@gmail.com?subject=Relat%C3%B3rios%20Sa%C3%BAde%20DF%20%E2%80%94%20Pedidos%20de%20acesso%20%C3%A0%20informa%C3%A7%C3%A3o%20%E2%80%94%20relato%20ou%20sugest%C3%A3o&amp;body=Descreva%20o%20problema%20encontrado%20ou%20a%20sugest%C3%A3o.%0A%0ASe%20for%20sobre%20um%20n%C3%BAmero%2C%20copie%20a%20frase%20ou%20a%20linha%20da%20tabela%20em%20que%20ele%20aparece.%0A%0A---%0ARelat%C3%B3rio%3A%20Pedidos%20de%20acesso%20%C3%A0%20informa%C3%A7%C3%A3o%0A" data-relatar><span aria-hidden="true">⚑</span> Relatar problema ou sugestão</a></div>
+</footer>
+</div>
+<script>
+(function () {
+  var BASE = "mailto:sinapseagentes@gmail.com?subject=Relat%C3%B3rios%20Sa%C3%BAde%20DF%20%E2%80%94%20Pedidos%20de%20acesso%20%C3%A0%20informa%C3%A7%C3%A3o%20%E2%80%94%20relato%20ou%20sugest%C3%A3o&body=Descreva%20o%20problema%20encontrado%20ou%20a%20sugest%C3%A3o.%0A%0ASe%20for%20sobre%20um%20n%C3%BAmero%2C%20copie%20a%20frase%20ou%20a%20linha%20da%20tabela%20em%20que%20ele%20aparece.%0A%0A---%0ARelat%C3%B3rio%3A%20Pedidos%20de%20acesso%20%C3%A0%20informa%C3%A7%C3%A3o%0A";
+  function secao() {
+    var s = [].slice.call(document.querySelectorAll('section[id]')),
+        y = window.scrollY + 120, a = '';
+    s.forEach(function (e) { if (e.offsetTop <= y) { a = e.id; } });
+    return a;
+  }
+  [].forEach.call(document.querySelectorAll('[data-relatar]'), function (b) {
+    b.addEventListener('click', function () {
+      var extra = secao();
+      b.href = BASE + (extra
+        ? '&body=' + encodeURIComponent('Seção: ' + extra + '
+') : '');
+    });
+  });
+})();
+</script>
+</body>
+</html>

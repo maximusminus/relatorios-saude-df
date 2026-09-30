@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>A população como denominador — Relatórios Saúde DF</title>
+<meta name="description" content="De onde vem cada divisor por habitante, região por região, e por que um número por mil depende dele.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,650&family=Public+Sans:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="../estilo.css">
+</head>
+<body>
+<div class="wrap">
+<div class="rep"><a href="mailto:sinapseagentes@gmail.com?subject=Relat%C3%B3rios%20Sa%C3%BAde%20DF%20%E2%80%94%20A%20popula%C3%A7%C3%A3o%20como%20denominador%20%E2%80%94%20relato%20ou%20sugest%C3%A3o&amp;body=Descreva%20o%20problema%20encontrado%20ou%20a%20sugest%C3%A3o.%0A%0ASe%20for%20sobre%20um%20n%C3%BAmero%2C%20copie%20a%20frase%20ou%20a%20linha%20da%20tabela%20em%20que%20ele%20aparece.%0A%0A---%0ARelat%C3%B3rio%3A%20A%20popula%C3%A7%C3%A3o%20como%20denominador%0A" data-relatar><span aria-hidden="true">⚑</span> Relatar problema ou sugestão</a></div>
+<p><a class="voltar" href="../">← todos os relatórios</a></p>
+<div class="kick">Saúde no DF · relatório 06</div>
+<h1>POPULAÇÃO — o denominador</h1>
+<blockquote><p>Nota de método da apuração de 2026-08-23. Toda razão <em>leitos por 1.000 habitantes</em> que este projeto publica divide por um número desta página. Até a apuração de 2026-08-23, esse número era um literal digitado dentro de um script, e uma de suas 33 linhas estava errada por 9.399 pessoas.</p></blockquote>
+<section id="o-que-estava-errado">
+<h2>O que estava errado</h2>
+<p><code>processamento próprio</code> traz 33 Regiões Administrativas com população, rotuladas <code>Fonte: Censo IBGE 2022 / Processamento IPEDF - Codeplan</code>. Não havia URL, página, nem artefato correspondente em <code>dados/raw/</code> — a apuração de 2026-08-23 foi obrigado a registrar essa procedência na própria tabela, na coluna <code>populacao_procedencia</code>, porque não podia mostrar mais do que isso.</p>
+<p>Buscado o dado na API do IBGE, três linhas divergem:</p>
+<div class="tabela"><table><thead><tr><th>RA</th><th>literal</th><th>IBGE Censo 2022</th><th>diferença</th></tr></thead><tbody><tr><td><strong>Lago Norte</strong></td><td>32.379</td><td><strong>41.778</strong></td><td><strong>+9.399</strong> (+29,0 %)</td></tr><tr><td>Planaltina</td><td>179.960</td><td>179.989</td><td>+29</td></tr><tr><td>Sobradinho</td><td>72.273</td><td>72.244</td><td>−29</td></tr><tr><td><em>as outras 30</em></td><td></td><td></td><td><em>conferem exatamente</em></td></tr><tr><td><strong>soma</strong></td><td><strong>2.807.982</strong></td><td><strong>2.817.381</strong></td><td><strong>+9.399</strong></td></tr></tbody></table></div>
+<p>Lago Norte responde sozinha por toda a diferença. <strong>Lago Norte fica na região de saúde Central</strong> — a região com mais leitos do DF, que sustenta o achado principal da apuração de 2026-08-23 — de modo que o erro inflava exatamente o número em que o projeto mais se apoia.</p>
+<p>A reconciliação linha a linha está na tabela <code>populacao_reconciliacao</code> de <code>saudedf.sqlite</code> e é reproduzível: <code>populacao_ra</code> continua sendo carregada a partir do literal, de propósito, para que as duas possam ser comparadas por qualquer pessoa.</p>
+</section>
+<section id="as-duas-popula-es-que-este-projeto-carrega">
+<h2>As duas populações que este projeto carrega</h2>
+<p>Não há uma só resposta certa, e escolher entre elas não é decisão da camada de extração. As duas ficam na coluna, na mesma chave, e quem divide por uma delas diz qual.</p>
+<div class="tabela"><table><thead><tr><th></th><th><code>populacao</code></th><th><code>populacao_pdad</code></th></tr></thead><tbody><tr><td><strong>Fonte</strong></td><td>IBGE, Censo Demográfico 2022</td><td>IPEDF/Codeplan, PDAD-A 2024</td></tr><tr><td><strong>Como</strong></td><td>agregado 9923, variável 93, nível N11 (subdistrito), município 5300108</td><td>microdados públicos de morador, <code>SOMA(peso_mor)</code> por <code>localidade</code></td></tr><tr><td><strong>Data de referência</strong></td><td>2022-07-31</td><td>2024</td></tr><tr><td><strong>Cobertura</strong></td><td><strong>33 das 35 RAs</strong> — Arapoanga e Água Quente são posteriores à malha do Censo 2022</td><td><strong>as 35 RAs</strong></td></tr><tr><td><strong>Quem conta</strong></td><td>população total</td><td><strong>apenas população urbana</strong></td></tr><tr><td><strong>Total</strong></td><td>2.817.381</td><td>2.861.057 urbana (+ 121.759 rural não atribuída = 2.982.816)</td></tr><tr><td><strong>Conferência</strong></td><td>soma exatamente igual ao total do município publicado pelo IBGE</td><td>reproduz os três subtotais publicados pelo IPEDF — urbano, rural e total — dentro de 0,005 %</td></tr></tbody></table></div>
+<p><strong>A ressalva da PDAD é material e não é uma nota de rodapé.</strong> As 35 linhas por RA são população <strong>urbana</strong>. Os moradores rurais do DF estão na localidade 5336, <code>Área Rural</code>, que não é uma Região Administrativa e não é atribuída a nenhuma.</p>
+<p><strong>E o número agregado não limita o número por RA — esta é a parte que engana.</strong> No DF inteiro a PDAD fica ~1,6 % abaixo do Censo 2022. Por RA:</p>
+<div class="tabela"><table><thead><tr><th>RA</th><th>Censo 2022</th><th>PDAD 2024</th><th>desvio</th><th>inflação da razão</th></tr></thead><tbody><tr><td>Planaltina</td><td>179.989</td><td>121.856</td><td><strong>−32,3 %</strong></td><td>×1,48</td></tr><tr><td><strong>Brazlândia</strong></td><td>55.561</td><td>41.859</td><td><strong>−24,7 %</strong></td><td><strong>×1,33</strong></td></tr><tr><td>Paranoá</td><td>63.923</td><td>55.551</td><td>−13,1 %</td><td>×1,15</td></tr><tr><td>Fercal</td><td>10.268</td><td>9.141</td><td>−11,0 %</td><td>×1,12</td></tr><tr><td>Águas Claras</td><td>128.486</td><td>141.872</td><td>+10,4 %</td><td>×0,91</td></tr></tbody></table></div>
+<p>Planaltina é caso à parte e por outro motivo: <strong>Arapoanga foi desmembrada dela</strong> depois do Censo 2022, então as duas colunas não medem o mesmo território — o mesmo vale para Recanto das Emas e Água Quente. Brazlândia, Paranoá e Fercal são o efeito rural puro.</p>
+<p><strong>Um <code>leitos/1.000</code> de Brazlândia calculado sobre a coluna da PDAD sai 33 % alto.</strong> Por isso cada linha de <code>ras_regioes</code> carrega o seu próprio <code>populacao_pdad_delta_pct</code>: quem divide por essa coluna lê o custo na linha, não numa média do Distrito Federal inteiro.</p>
+<p><strong>A ressalva do IBGE também é material.</strong> Arapoanga (49.067 pela PDAD) e Água Quente (11.306) não têm linha própria no Censo 2022: foram desmembradas de Planaltina e do Recanto das Emas depois da malha. Na coluna do IBGE, essas pessoas estão contadas — dentro das RAs de origem.</p>
+</section>
+<section id="o-terceiro-n-mero-e-por-que-ele-n-o-aparece-nest">
+<h2>O terceiro número, e por que ele não aparece nesta tabela</h2>
+<p>O <code>PDS 2024-2027</code>, p. 36, declara <strong>3.130.014</strong> habitantes, e foi o número que o operador escolheu em 2026-08-23 como denominador da apuração de 2026-08-23. <strong>É um total do DF e o PDS não publica nenhuma desagregação dele</strong> — nem por RA, nem por região de saúde. Verificado no documento inteiro.</p>
+<p>Portanto a apuração de 2026-08-23 tem uma escolha real a fazer, e ela está registrada em <code>plano/apuração de 2026-08-23.plano.md</code>, não decidida aqui.</p>
+</section>
+<section id="o-que-a-pdad-publica-e-o-que-n-o-publica">
+<h2>O que a PDAD publica e o que não publica</h2>
+<p>A tentativa de obter a população por RA da PDAD passou por três rotas, e o que bloqueou cada uma está registrado por <strong>tipo de obstáculo</strong>, não como "falhou":</p>
+<div class="tabela"><table><thead><tr><th>Rota</th><th>Resultado</th><th>Obstáculo</th></tr></thead><tbody><tr><td>Os 35 relatórios PDF por RA</td><td><strong>recusado</strong></td><td>publicados como <strong>imagem renderizada</strong>. Verificado no relatório do Plano Piloto: 8 fluxos com operadores de texto contra 68 XObjects de imagem; a extração por CMap <code>ToUnicode</code>, escrita com a biblioteca padrão, devolve a capa e a equipe técnica e <strong>nenhum número estatístico</strong>. Ler esses PDFs exigiria OCR, que é uma dependência, e adotar uma é decisão do operador</td></tr><tr><td>Microdados de <strong>domicílio</strong></td><td><strong>recusado</strong></td><td><code>peso_dom</code> é peso de <strong>domicílio</strong>, não de pessoa. <code>SOMA(peso_dom × A01npessoas)</code> devolve <strong>3.438.531</strong> contra os 2.982.658 publicados, com razões por RA que não são constantes (Ceilândia 1,17; Plano Piloto 1,21; Samambaia 1,26). Produzir um número por um método que o produtor não usou e chamá-lo de PDAD seria fabricar a fonte</td></tr><tr><td>Microdados de <strong>morador</strong></td><td><strong>aceito</strong></td><td><code>peso_mor</code> é o peso de expansão por pessoa que o próprio IPEDF publica. Reproduz os três subtotais publicados. É a rota que está no <code>processamento próprio</code></td></tr></tbody></table></div>
+<p><strong>Uma correção de percurso fica registrada.</strong> Ao redigir o plano, <code>moradores_60wwMwo.zip</code> respondeu <strong>HTTP 404</strong> e o plano concluiu que a rota estava fechada. Na execução o mesmo arquivo respondeu 200 e 4,5 MB — o 404 foi transitório, provavelmente cache frio da CDN. O critério (d) da apuração de 2026-08-23 exigia reverificar as suposições 4-6 na execução em vez de copiá-las do plano, e foi exatamente isso que devolveu a rota. <strong>A suposição estava errada e a tabela existe por causa da reverificação.</strong></p>
+</section>
+<section id="os-hosts">
+<h2>Os hosts</h2>
+<p><code>pdad.ipe.df.gov.br</code> responde 200. <strong>Não é o mesmo host</strong> que <code>ipedf.df.gov.br</code> e <code>ipe.df.gov.br</code> (recusa de conexão / timeout) nem que <code>dadosabertos.df.gov.br</code> (sem DNS), que a declaração de realidade do host em <code>o registro de fontes deste projeto</code> registra como inalcançáveis. Um leitor daquela declaração concluiria razoavelmente que a PDAD estava fora de alcance; esta seção existe para corrigir essa impressão.</p>
+</section>
+<section id="efeito-sobre-o-achado-da-apura-o-de-2026-08-23">
+<h2>Efeito sobre o achado da apuração de 2026-08-23</h2>
+<p><strong>A tabela que a apuração de 2026-08-23 publicou</strong> — todos os leitos, estabelecimentos ativos, competência 202607 — corrigida:</p>
+<div class="tabela"><table><thead><tr><th>Região de saúde</th><th>leitos</th><th>apuração de 2026-08-23 publicou</th><th><strong>IBGE 2022</strong></th><th>PDAD 2024</th></tr></thead><tbody><tr><td><strong>Central</strong></td><td>5.434</td><td><strong>16,17</strong></td><td><strong>15,73</strong></td><td>15,07</td></tr><tr><td>Sul</td><td>1.230</td><td>4,80</td><td>4,80</td><td>4,81</td></tr><tr><td>Norte</td><td>776</td><td>2,25</td><td>2,25</td><td>2,35</td></tr><tr><td>Oeste</td><td>929</td><td>2,09</td><td>2,09</td><td>2,12</td></tr><tr><td>Sudoeste</td><td>1.515</td><td>1,90</td><td>1,90</td><td>1,81</td></tr><tr><td>Leste</td><td>331</td><td>1,08</td><td>1,08</td><td>1,12</td></tr><tr><td>Centro-Sul</td><td>303</td><td>0,93</td><td>0,93</td><td>0,88</td></tr><tr><td><strong>DF</strong></td><td><strong>10.518</strong></td><td>3,75</td><td><strong>3,73</strong></td><td>3,68</td></tr></tbody></table></div>
+<p>O apuração de 2026-08-23 afirmou um espalhamento de <strong>dezessete vezes</strong> entre a Central e a Centro-Sul. Com o denominador corrigido são <strong>16,9 vezes</strong> — e 16,2 vezes pela PDAD. A afirmação continua verdadeira em qualquer leitura; o número exato que a acompanhava, não.</p>
+<p>E a mesma tabela restrita a <strong>leitos SUS</strong>, que é o recorte que a apuração de 2026-08-23 vai usar por decisão do operador:</p>
+<div class="tabela"><table><thead><tr><th>Região de saúde</th><th>leitos SUS</th><th>literal (errado)</th><th><strong>IBGE 2022</strong></th><th>PDAD 2024</th></tr></thead><tbody><tr><td><strong>Central</strong></td><td>2.520</td><td>7,50</td><td><strong>7,30</strong></td><td>6,99</td></tr><tr><td>Sul</td><td>992</td><td>3,87</td><td><strong>3,87</strong></td><td>3,88</td></tr><tr><td>Oeste</td><td>692</td><td>1,56</td><td><strong>1,56</strong></td><td>1,58</td></tr><tr><td>Norte</td><td>375</td><td>1,09</td><td><strong>1,09</strong></td><td>1,13</td></tr><tr><td>Sudoeste</td><td>698</td><td>0,88</td><td><strong>0,88</strong></td><td>0,83</td></tr><tr><td>Leste</td><td>262</td><td>0,86</td><td><strong>0,86</strong></td><td>0,88</td></tr><tr><td>Centro-Sul</td><td>73</td><td>0,22</td><td><strong>0,22</strong></td><td>0,21</td></tr><tr><td><strong>DF</strong></td><td><strong>5.612</strong></td><td>2,00</td><td><strong>1,99</strong></td><td>1,96</td></tr></tbody></table></div>
+<p>Só a Central se move, porque só Lago Norte mudava de tamanho; as divergências de Planaltina e Sobradinho são ±29 e ficam ambas na região Norte, onde se cancelam.</p>
+<p><strong>O achado sobrevive, e a correção é registrada em vez de absorvida.</strong> A Central continua com algo como <strong>33 vezes</strong> a razão da Centro-Sul, sob qualquer um dos três denominadores. O formato do achado estava certo; um dos seus números não estava.</p>
+</section>
+<footer>
+<p>Cada número desta página tem a sua fonte no próprio texto. Nenhum valor é estimado, e o que a fonte não publica está declarado como lacuna.</p>
+<div class="rep fim"><a href="mailto:sinapseagentes@gmail.com?subject=Relat%C3%B3rios%20Sa%C3%BAde%20DF%20%E2%80%94%20A%20popula%C3%A7%C3%A3o%20como%20denominador%20%E2%80%94%20relato%20ou%20sugest%C3%A3o&amp;body=Descreva%20o%20problema%20encontrado%20ou%20a%20sugest%C3%A3o.%0A%0ASe%20for%20sobre%20um%20n%C3%BAmero%2C%20copie%20a%20frase%20ou%20a%20linha%20da%20tabela%20em%20que%20ele%20aparece.%0A%0A---%0ARelat%C3%B3rio%3A%20A%20popula%C3%A7%C3%A3o%20como%20denominador%0A" data-relatar><span aria-hidden="true">⚑</span> Relatar problema ou sugestão</a></div>
+</footer>
+</div>
+<script>
+(function () {
+  var BASE = "mailto:sinapseagentes@gmail.com?subject=Relat%C3%B3rios%20Sa%C3%BAde%20DF%20%E2%80%94%20A%20popula%C3%A7%C3%A3o%20como%20denominador%20%E2%80%94%20relato%20ou%20sugest%C3%A3o&body=Descreva%20o%20problema%20encontrado%20ou%20a%20sugest%C3%A3o.%0A%0ASe%20for%20sobre%20um%20n%C3%BAmero%2C%20copie%20a%20frase%20ou%20a%20linha%20da%20tabela%20em%20que%20ele%20aparece.%0A%0A---%0ARelat%C3%B3rio%3A%20A%20popula%C3%A7%C3%A3o%20como%20denominador%0A";
+  function secao() {
+    var s = [].slice.call(document.querySelectorAll('section[id]')),
+        y = window.scrollY + 120, a = '';
+    s.forEach(function (e) { if (e.offsetTop <= y) { a = e.id; } });
+    return a;
+  }
+  [].forEach.call(document.querySelectorAll('[data-relatar]'), function (b) {
+    b.addEventListener('click', function () {
+      var extra = secao();
+      b.href = BASE + (extra
+        ? '&body=' + encodeURIComponent('Seção: ' + extra + '
+') : '');
+    });
+  });
+})();
+</script>
+</body>
+</html>

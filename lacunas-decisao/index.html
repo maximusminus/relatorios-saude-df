@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>As dezoito lacunas e a decisão sobre cada uma — Relatórios Saúde DF</title>
+<meta name="description" content="O que falta, quanto pesa, o que se tentou e o que se decidiu — uma entrada por lacuna.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,650&family=Public+Sans:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="../estilo.css">
+</head>
+<body>
+<div class="wrap">
+<div class="rep"><a href="mailto:sinapseagentes@gmail.com?subject=Relat%C3%B3rios%20Sa%C3%BAde%20DF%20%E2%80%94%20As%20dezoito%20lacunas%20e%20a%20decis%C3%A3o%20sobre%20cada%20uma%20%E2%80%94%20relato%20ou%20sugest%C3%A3o&amp;body=Descreva%20o%20problema%20encontrado%20ou%20a%20sugest%C3%A3o.%0A%0ASe%20for%20sobre%20um%20n%C3%BAmero%2C%20copie%20a%20frase%20ou%20a%20linha%20da%20tabela%20em%20que%20ele%20aparece.%0A%0A---%0ARelat%C3%B3rio%3A%20As%20dezoito%20lacunas%20e%20a%20decis%C3%A3o%20sobre%20cada%20uma%0A" data-relatar><span aria-hidden="true">⚑</span> Relatar problema ou sugestão</a></div>
+<p><a class="voltar" href="../">← todos os relatórios</a></p>
+<div class="kick">Saúde no DF · relatório 07</div>
+<h1>As dezoito lacunas e a decisão sobre cada uma</h1>
+<p>Das <strong>48</strong> necessidades de dados que a análise declara, <strong>30 já estavam coletadas</strong> quando esta folha foi escrita, em 18/09/2026. Este documento é o resto: as outras 18, uma por entrada, em linguagem direta — o que é, qual endereço falhou e o que ele respondeu, o que a falta trava, e um peso (1·2·3·5·8·13·21) para quanto a análise perde sem aquele dado. Os pesos e as linhas de <em>leitura</em> são juízo de quem mediu, e servem para ser discutidos, não obedecidos.</p>
+<p><strong>Atualizado em 19/09/2026, sobre as rotas marcadas nesta folha.</strong> Sete das dezesseis lacunas reais foram roteadas: <strong>cinco fecharam de vez</strong> e <strong>duas ficaram reduzidas a um buraco nomeado</strong>. Nove seguem abertas. Cada entrada abaixo mantém o texto original — a medição que a tornou lacuna é o registro — e ganha uma linha de <strong>Atualização</strong> onde o estado mudou. Nenhum número abaixo foi estimado para fechar uma conta: onde uma rota alcançou parte de uma série, a parte que ela não alcançou é publicada como lacuna, nunca interpolada.</p>
+<p>Fonte: a tabela de cobertura <code>eixos_cobertura</code> do banco do projeto, lida em 18/09/2026, mais a última medição ao vivo de cada hospedeiro. Todo estado abaixo foi <strong>medido</strong>, e todo estado é <strong>remedido em cada execução</strong> — um publicador que volte a abrir é visto.</p>
+<p><strong>Duas das dezoito não são lacunas.</strong> As equipes do cadastro nacional de estabelecimentos e a população residente por faixa de idade aparecem como <em>ainda não buscadas</em> quando o dado já está no banco. As linhas de cobertura nunca foram atualizadas. A contagem real de lacunas abertas é <strong>16</strong>.</p>
+<div class="tabela"><table><thead><tr><th>Estado</th><th>18/09/2026</th><th>Depois das rotas</th><th>O que significa</th></tr></thead><tbody><tr><td>coletado</td><td>0</td><td>5</td><td>roteado e construído: uma tabela com a sua própria reconciliação</td></tr><tr><td>parcialmente coletado</td><td>0</td><td>2</td><td>parte da série alcançada; o resto é lacuna declarada</td></tr><tr><td>recusado pelo publicador</td><td>7</td><td>4</td><td>um muro — firewall, captcha, certificado quebrado. Nada aqui tenta contornar um deles</td></tr><tr><td>nunca publicado</td><td>6</td><td>4</td><td>o hospedeiro responde; o dado simplesmente não está lá</td></tr><tr><td>ainda não buscado</td><td>3</td><td>3</td><td>a permissão existe, ninguém coletou (2 destas são linhas desatualizadas)</td></tr><tr><td>o hospedeiro não responde</td><td>2</td><td>0</td><td>o endereço existe, a conexão falha</td></tr></tbody></table></div>
+<hr>
+<section id="21-o-vencimento-b-sico-da-carreira-m-dica-ano-a-">
+<h2>21 — O vencimento básico da carreira médica, ano a ano</h2>
+<p><strong>Estado:</strong> parcialmente coletado · lacuna reduzida · <strong>Bloco 5, carreiras e remuneração</strong></p>
+<p>A tabela de vencimentos dos médicos da Secretaria de Saúde é anexo de uma lei, publicada no próprio site de legislação do DF. Esse site recusa toda requisição: em HTTP responde 403, e em HTTPS apresenta um certificado emitido para outra instituição — uma divergência que um navegador comum também rejeita. Um navegador de verdade foi tentado e falhou do mesmo jeito, então não é uma questão de parecer humano o bastante.</p>
+<ul>
+<li><strong>Endereço:</strong> https://sinj.df.gov.br/</li>
+<li><strong>Resposta:</strong> HTTP 403 em http; em https o certificado é emitido para <code>*.tc.df.gov.br</code> — nome divergente. Navegador real: <code>ERR_CERT_COMMON_NAME_INVALID</code> (18/09/2026).</li>
+<li><strong>Trava:</strong> a afirmação central do Bloco 5 — que a carreira médica perdeu valor — hoje se apoia em número de pessoas e em vagas, não no que o cargo efetivamente paga.</li>
+<li><strong>Leitura:</strong> a lacuna de maior valor da lista. A lei é pública; só este canal de distribuição está quebrado. Vale pedir direto ao publicador, ou achar o anexo reproduzido no diário oficial.</li>
+<li><strong>Atualização, 19/09/2026:</strong> <strong>roteada por um segundo publicador, e reduzida.</strong> A tabela de vencimentos está publicada: <code>vencimento_medico</code>, 276 linhas, de duas fontes — Anexos II e III da Lei 3.323/2004 (cinco vigências, 03/2004 a 07/2006, lidos da página daquela lei depois de conferir que a epígrafe da própria página a declara) e a tabela de escalonamento vertical da Secretaria de Economia em vigor desde 07/2025. <strong>O buraco entre as duas, 08/2006 a 06/2025, é publicado como lacuna e nunca interpolado</strong> (<code>vencimento_medico_lacunas</code>, 2 linhas): os anexos de remuneração da Lei 2.585/2000, da Lei 5.181/2013 e da Lei 7.253/2023 não estão no texto que o site serve — a primeira diz no próprio corpo que "os anexos constam no DODF", e a segunda imprime o título <code>ANEXO II TABELA DE VENCIMENTOS</code> sem nenhum número depois. A busca no diário oficial foi exercida e <strong>não fechou a lacuna</strong>: a página da norma não linka nenhum arquivo do diário, e a busca do DODF é um formulário cujo resultado devolve uma casca vazia a uma requisição simples — não é um controle que este projeto tente driblar.</li>
+</ul>
+</section>
+<section id="13-a-folha-de-pagamento-da-secretaria-de-sa-de-p">
+<h2>13 — A folha de pagamento da Secretaria de Saúde por carreira</h2>
+<p><strong>Estado:</strong> coletado · <strong>Bloco 5, carreiras e remuneração</strong></p>
+<p>O portal da transparência serve isto, mas um servidor por vez: um único mês devolve 262.422 registros cobrindo todo o funcionalismo do DF, e todo parâmetro de filtro tentado é silenciosamente ignorado. Os limites publicados são 10 requisições por minuto e 250 por hora — cerca de sete horas por mês de dado, e várias semanas para a série.</p>
+<ul>
+<li><strong>Endereço:</strong> https://www.transparencia.df.gov.br/api/servidor/ — detalhe por servidor</li>
+<li><strong>Resposta:</strong> HTTP 200, e é justamente esse o problema: 262.422 registros por mês, todo filtro ignorado, 10 requisições por minuto e 250 por hora.</li>
+<li><strong>Trava:</strong> a mesma afirmação da entrada anterior. Com a tabela de vencimentos também bloqueada, a metade salarial do Bloco 5 não tinha fonte nenhuma.</li>
+<li><strong>Leitura:</strong> travado por aritmética, não por um muro. Ou se pede uma exportação em lote ao dono do portal, ou se amostram alguns meses de referência — uma amostra é honesta se estiver rotulada como amostra.</li>
+<li><strong>Atualização, 19/09/2026:</strong> <strong>coletado — o endereço por servidor era a porta errada.</strong> O mesmo portal publica <strong>arquivos zip anuais</strong> da folha, e o conjunto inteiro de 2013 a 2026 foi baixado (≈3 GB) e agregado localmente: <code>remuneracao_ses_carreira</code>, <strong>44.703 linhas</strong>, uma por (ano, mês, cargo). <strong>Nenhum nome é publicado</strong> — os arquivos trazem o nome completo e nada abaixo do nível de cargo sai da máquina. Reconciliado por competência contra a contagem de linhas de cada arquivo: <code>remuneracao_ses_reconciliacao</code>, <strong>163 competências, nenhuma divergindo</strong>. A carreira médica é identificada <strong>só pelos rótulos de órgão e cargo do próprio publicador</strong>, e um mês cujo rótulo de órgão mudou é reportado como achado, nomeando os rótulos reais daquele arquivo — nunca como um zero que fecha consigo mesmo.</li>
+</ul>
+</section>
+<section id="13-as-duas-leis-por-tr-s-da-mudan-a-na-carreira">
+<h2>13 — As duas leis por trás da mudança na carreira</h2>
+<p><strong>Estado:</strong> coletado · <strong>Bloco 5, carreiras e remuneração</strong></p>
+<p>A Lei Complementar 840/2011 e a Lei 6.137/2018 — a base legal da mudança na jornada e na estrutura de remuneração dos médicos. Mesmo site, mesmo certificado quebrado, mesmo 403.</p>
+<ul>
+<li><strong>Endereço:</strong> https://sinj.df.gov.br/</li>
+<li><strong>Resposta:</strong> HTTP 403, nome do certificado divergente.</li>
+<li><strong>Trava:</strong> o elo entre uma mudança legal e os números que vêm depois dela. Sem os textos, datas e termos não podem ser citados.</li>
+<li><strong>Leitura:</strong> são leis, reproduzidas em vários lugares. Um segundo publicador provavelmente resolve.</li>
+<li><strong>Atualização, 19/09/2026:</strong> <strong>coletado.</strong> <code>carreira_medica_normas</code>, 6 linhas — a LC 840/2011, a Lei 6.137/2018 e as quatro leis de carreira (2.585/2000, 3.323/2004, 5.181/2013, 7.253/2023), cada uma com o texto em cache e resumo criptográfico. O nome de hospedeiro com <code>www.</code> responde onde o nome nu não responde. <strong>Um achado mantido em vez de alisado:</strong> três dos seis endereços tentados primeiro serviram uma norma completamente diferente, então toda página passou a ser conferida contra a própria epígrafe antes de se ler um número dela, e a Lei 7.253/2023 é publicada <strong>sem URL</strong> — o identificador dela não é linkado por nenhuma das páginas autorizadas e a busca de normas do site é protegida por reCAPTCHA, que este projeto se recusa a automatizar. Nenhum identificador foi adivinhado.</li>
+</ul>
+</section>
+<section id="13-cobertura-da-aten-o-prim-ria-equipes-e-agente">
+<h2>13 — Cobertura da atenção primária, equipes e agentes comunitários por região administrativa</h2>
+<p><strong>Estado:</strong> parcialmente coletado · lacuna reduzida · <strong>Bloco 2, atenção primária</strong></p>
+<p>O sistema federal de atenção primária publica totais do DF, mas não a abertura por região administrativa por nenhuma interface documentada — o site é um aplicativo que devolve a mesma página para todo endereço. O script antigo do próprio projeto pedia que o operador exportasse o arquivo à mão.</p>
+<ul>
+<li><strong>Endereço:</strong> https://egestoraps.saude.gov.br/ e https://apiegestoraps.saude.gov.br/</li>
+<li><strong>Resposta:</strong> HTTP 200, mas todo endereço devolve a mesma casca de aplicativo; o código do próprio site não chama nenhum endereço de cobertura.</li>
+<li><strong>Trava:</strong> a análise pede tudo por região administrativa. A cobertura da atenção primária só pode, hoje, ser afirmada para o DF inteiro.</li>
+<li><strong>Leitura:</strong> uma exportação manual é admissível se <strong>você</strong> a fizer — é ato seu, não automatizado. Fora isso a lacuna fica e é declarada no texto.</li>
+<li><strong>Atualização, 19/09/2026:</strong> <strong>a série do DF está coletada; o corte regional é uma recusa medida.</strong> A interface do portal de relatórios responde: <code>aps_cobertura_egestor</code>, <strong>3.608 linhas</strong>, mensal de 2007 a 2026, formato longo, uma linha por (competência, método, indicador) — e <strong>os três métodos nunca são emendados num só</strong>, porque medem coisas diferentes. O que <em>não</em> é publicado por aquela interface é o corte abaixo da unidade federativa, e cada tentativa fica registrada com a recusa que devolveu (<code>aps_cobertura_ausencias</code>): <code>REGIAO_SAUDE</code> → HTTP 400, <code>REGIAOSAUDE</code> → HTTP 500, <code>MUNICIPIO</code> → 200 com zero linhas, o DF sendo um único município. <strong>Nada é rateado nem estimado para produzir um número regional.</strong> Uma exportação manual sua segue sendo a única rota para a abertura regional.</li>
+</ul>
+</section>
+<section id="8-demografia-m-dica-do-conselho-federal-tabelas-">
+<h2>8 — Demografia médica do conselho federal, tabelas do DF</h2>
+<p><strong>Estado:</strong> coletado · <strong>Bloco 4, força de trabalho</strong></p>
+<p>O portal de pesquisa do conselho de medicina redireciona para o site principal, que responde normalmente; a plataforma de demografia que ele anuncia devolve 404 em todo endereço, inclusive no próprio arquivo de robôs. A publicação parece retirada do ar, não bloqueada.</p>
+<ul>
+<li><strong>Endereço:</strong> https://demografia.cfm.org.br/ (via https://observatorio.cfm.org.br/demografia/)</li>
+<li><strong>Resposta:</strong> HTTP 404 em todo endereço, inclusive <code>robots.txt</code>. A cadeia de redirecionamento responde 200.</li>
+<li><strong>Trava:</strong> uma contagem independente de médicos no DF, ao lado das contagens de vínculo do cadastro nacional já publicadas.</li>
+<li><strong>Leitura:</strong> os relatórios de demografia também existem como edições em PDF. Uma busca no domínio do próprio conselho antes de desistir.</li>
+<li><strong>Atualização, 19/09/2026:</strong> <strong>coletado da própria publicação.</strong> A plataforma do conselho segue em 404, mas o estudo está publicado como PDF: <code>demografia_medica_amb</code>, <strong>33 linhas</strong> — a Tabela 3 de <em>Demografia Médica no Brasil 2025</em>, médicos, população e razão para cada unidade federativa. <strong>Uma coluna existe porque a nota da própria tabela a exige:</strong> a razão é por <strong>registro</strong>, não por médico — 597.428 pessoas detinham 653.945 registros em 31/12/2024 — então o 6,28/1.000 do DF, o mais alto do país, conta registros mantidos no DF, inclusive de médicos que também atuam em outro lugar. Publicado como coluna, não como nota de pé que o leitor pode perder.</li>
+</ul>
+</section>
+<section id="8-as-demonstra-es-cont-beis-auditadas-do-hospita">
+<h2>8 — As demonstrações contábeis auditadas do Hospital da Criança</h2>
+<p><strong>Estado:</strong> nunca publicado · <strong>Bloco 6, IGES-DF e o contraponto</strong></p>
+<p>O site de transparência do hospital responde e foi contado duas vezes: 127 links no índice, nenhum deles um arquivo, e 23 páginas de detalhe todas enumeradas. Os contratos de gestão estão lá; as demonstrações contábeis não.</p>
+<ul>
+<li><strong>Endereço:</strong> https://www.hcb.org.br/transparencia/demonstracoes-contabeis/</li>
+<li><strong>Resposta:</strong> não publicado. O índice responde 200 com 127 links, zero arquivos, 23 páginas de detalhe, todas lidas.</li>
+<li><strong>Trava:</strong> a metade do contraponto do Bloco 6. Os números de custo do IGES-DF não têm nada igualmente auditado ao lado.</li>
+<li><strong>Leitura:</strong> a lacuna que um pedido direto à instituição mais provavelmente resolve — as demonstrações existem, só não estão no site.</li>
+</ul>
+</section>
+<section id="8-os-pareceres-do-tribunal-de-contas-sobre-as-co">
+<h2>8 — Os pareceres do Tribunal de Contas sobre as contas do DF</h2>
+<p><strong>Estado:</strong> coletado · <strong>Bloco 8, a omissão do legislativo</strong></p>
+<p>O site do tribunal de contas falha antes de servir qualquer página: o certificado de segurança dele não pode ser verificado contra nenhuma das duas autoridades certificadoras que este projeto tem permissão de usar. Medido duas vezes, em dias diferentes, com o mesmo resultado.</p>
+<ul>
+<li><strong>Endereço:</strong> https://www2.tc.df.gov.br/</li>
+<li><strong>Resposta:</strong> falha de TLS — verificação de certificado falhou, emissor local não encontrado (13/09/2026, confirmando 11/09/2026).</li>
+<li><strong>Trava:</strong> a cadeia que termina no Bloco 8 — o tribunal emite um parecer, o legislativo o vota. Sem os pareceres só os votos poderiam ser mostrados, e eles também faltavam (entrada seguinte).</li>
+<li><strong>Leitura:</strong> provavelmente resolvível. Acrescentar uma autoridade certificadora é uma permissão pequena que você pode conceder — o item mais barato da lista em relação ao que destrava.</li>
+<li><strong>Atualização, 19/09/2026:</strong> <strong>coletado — o certificado era todo o obstáculo, e foram dois saltos, não um.</strong> O hospedeiro omite o certificado intermediário; buscá-lo expôs um segundo problema, a raiz que o emitiu também não estava no repositório de confiança desta máquina, então o emissor declarado por aquele intermediário foi buscado também. <strong>Nada é confiado na chegada</strong> — a verificação segue ligada, e os dois endereços de autoridade certificadora foram autorizados antes da primeira requisição a eles. Resultado: <code>tcdf_contas_governo</code>, <strong>21 linhas</strong>, exercícios de 2004 a 2024, só URL e título, como a autorização permite. <strong>O ano e o relator vêm do título de cada link, nunca da URL</strong> — medido: quatro pareceres estão sob endereços prefixados por <code>2020</code>, e um ano derivado da URL os teria arquivado no exercício errado.</li>
+</ul>
+</section>
+<section id="8-como-o-legislativo-julgou-as-contas-do-df">
+<h2>8 — Como o legislativo julgou as contas do DF</h2>
+<p><strong>Estado:</strong> coletado · <strong>Bloco 8, a omissão do legislativo</strong></p>
+<p>O canal de dados abertos do legislativo derruba a conexão de saída — não é uma página de recusa, não é um tempo esgotado, é um reset. Este é o hospedeiro de dados abertos da Câmara Legislativa, separado da interface de proposições que funciona.</p>
+<ul>
+<li><strong>Endereço:</strong> https://dadosabertos.cl.df.gov.br/</li>
+<li><strong>Resposta:</strong> conexão reiniciada pelo par (errno 104), medido duas vezes.</li>
+<li><strong>Trava:</strong> a outra metade da cadeia de responsabilização acima. A análise pergunta onde o legislativo poderia ter agido e não agiu; um voto sobre as contas do DF é exatamente um desses pontos.</li>
+<li><strong>Leitura:</strong> a interface que funciona pode trazer os mesmos votos com outro nome. Uma olhada lá antes de tratar isto como perdido.</li>
+<li><strong>Atualização, 19/09/2026:</strong> <strong>coletado — a leitura estava certa, a interface que funciona os traz.</strong> A interface de proposições serve os decretos sob o tipo próprio deles: <code>cldf_contas_governo</code>, <strong>35 linhas</strong>, uma por exercício de 1990 a 2024, incluindo os exercícios <strong>sem decreto nenhum</strong> — <code>estado=sem_pdl</code>. Essa linha é a mais decisiva da tabela, porque um decreto ausente é precisamente a omissão que o Bloco 8 mede; descartá-la por falta de linha de origem transformaria silêncio em ausência da pergunta. A coluna <code>natureza</code> separa <em>aprovar</em> as contas de apenas <em>encaminhá-las</em>, que são atos diferentes. O hospedeiro de dados abertos segue morto e já não é necessário para isto.</li>
+</ul>
+</section>
+<section id="8-os-planos-de-governo-protocolados-em-2018-e-20">
+<h2>8 — Os planos de governo protocolados em 2018 e 2022</h2>
+<p><strong>Estado:</strong> recusado pelo publicador · <strong>Bloco 7, o prometido e o entregue</strong></p>
+<p>O sistema de divulgação da justiça eleitoral responde 403 pela rede de distribuição de conteúdo — uma recusa geral, remedida em cada execução. Só o índice foi pedido: endereço, título, data.</p>
+<ul>
+<li><strong>Endereço:</strong> https://divulgacandcontas.tse.jus.br/</li>
+<li><strong>Resposta:</strong> HTTP 403, "Access Denied" de um nó Akamai. Remedido em cada execução.</li>
+<li><strong>Trava:</strong> a ponta do "prometido" no Bloco 7. Orçado, executado e entregue estão coletados; a promessa é a âncora que falta.</li>
+<li><strong>Leitura:</strong> esses protocolos são espelhados por projetos de dados cívicos e pelos partidos. Uma segunda fonte é realista.</li>
+</ul>
+</section>
+<section id="8-concursos-e-nomea-es-das-carreiras-de-sa-de">
+<h2>8 — Concursos e nomeações das carreiras de saúde</h2>
+<p><strong>Estado:</strong> ainda não buscado · <strong>Bloco 5, carreiras e remuneração</strong></p>
+<p>Nada está quebrado: o projeto não tinha permissão cobrindo nenhum endereço de diário oficial, então ninguém nunca pediu. O plano seria um índice apenas — data, número, título.</p>
+<ul>
+<li><strong>Endereço:</strong> https://dodf.df.gov.br — nunca requisitado</li>
+<li><strong>Resposta:</strong> não existia linha de permissão para nenhum endereço de diário oficial, então nenhuma requisição foi feita.</li>
+<li><strong>Trava:</strong> o elo entre vagas e contratação. A tabela de vagas existe, o registro de contratação não, então a estagnação ainda não pode ser mostrada como sequência.</li>
+<li><strong>Leitura:</strong> depende só da sua palavra — nomeie o site do diário, eu acrescento a linha de permissão e coleto. Nenhum obstáculo técnico conhecido.</li>
+</ul>
+</section>
+<section id="5-a-s-rie-hist-rica-de-registros-ativos-do-conse">
+<h2>5 — A série histórica de registros ativos do conselho regional</h2>
+<p><strong>Estado:</strong> nunca publicado · <strong>Bloco 4, força de trabalho</strong></p>
+<p>O site do conselho regional lê bem, mas não publica nenhuma série agregada: o que existe é uma busca de um médico por vez atrás de um captcha. O mapa do site é um engodo — devolve a página inicial.</p>
+<ul>
+<li><strong>Endereço:</strong> https://crmdf.org.br/</li>
+<li><strong>Resposta:</strong> HTTP 200, mas nenhuma série: <code>wp-sitemap.xml</code> 404, <code>sitemap.xml</code> devolve a página inicial, a interface de conteúdo responde 401.</li>
+<li><strong>Trava:</strong> uma segunda leitura independente de quantos médicos estão registrados no DF.</li>
+<li><strong>Leitura:</strong> pedir ao conselho. Um total anual é o tipo de número que uma instituição responde por e-mail em uma semana.</li>
+</ul>
+</section>
+<section id="5-censo-da-educa-o-superior-medicina-no-df">
+<h2>5 — Censo da educação superior, medicina no DF</h2>
+<p><strong>Estado:</strong> nunca publicado · <strong>Bloco 4, força de trabalho</strong></p>
+<p>O site de download do instituto de pesquisas educacionais completa a conexão e depois a derruba — a recusa vem do servidor, não desta máquina, mas nada a identifica como bloqueio deliberado. Sem página de bloqueio, sem explicação.</p>
+<ul>
+<li><strong>Endereço:</strong> https://download.inep.gov.br/educacao_superior/censo_superior/</li>
+<li><strong>Resposta:</strong> conexão reiniciada depois de um handshake TLS completo.</li>
+<li><strong>Trava:</strong> quantos formados em medicina o DF produz por ano — o lado da oferta no argumento sobre força de trabalho.</li>
+<li><strong>Leitura:</strong> o mesmo censo é publicado como microdado aberto em outro lugar. Provavelmente recuperável por um segundo endereço da mesma instituição.</li>
+</ul>
+</section>
+<section id="5-cursos-de-medicina-no-df-e-o-ano-de-autoriza-o">
+<h2>5 — Cursos de medicina no DF e o ano de autorização de cada um</h2>
+<p><strong>Estado:</strong> recusado pelo publicador · <strong>Bloco 4, força de trabalho</strong></p>
+<p>O cadastro de cursos do ministério responde 403 a qualquer coisa que não seja um navegador — e, quando um navegador de verdade foi usado, respondeu 403 a ele também. O muro é deliberado e não é contornado.</p>
+<ul>
+<li><strong>Endereço:</strong> https://emec.mec.gov.br/emec/nova-pesquisa/avancada</li>
+<li><strong>Resposta:</strong> HTTP 403 a um cliente simples e HTTP 403 a um navegador real (18/09/2026).</li>
+<li><strong>Trava:</strong> as datas de quando a capacidade de formação médica foi criada no DF. Contexto, não sustentação.</li>
+<li><strong>Leitura:</strong> valor baixo para o esforço. Os mesmos fatos aparecem nas publicações de cada instituição, se algum dia forem necessários.</li>
+</ul>
+</section>
+<section id="3-egressos-da-escola-de-sa-de-e-reten-o-na-rede-">
+<h2>3 — Egressos da escola de saúde e retenção na rede pública</h2>
+<p><strong>Estado:</strong> nunca publicado · <strong>Bloco 4, força de trabalho</strong></p>
+<p>O site da escola de saúde responde e até expõe uma interface aberta de conteúdo, mas não publica série alguma de egressos nem de quantos permanecem na rede pública.</p>
+<ul>
+<li><strong>Endereço:</strong> https://www.escs.edu.br/ (interface aberta em <code>/wp-json/wp/v2</code>)</li>
+<li><strong>Resposta:</strong> HTTP 200, nenhuma série de egressos ou de retenção publicada.</li>
+<li><strong>Trava:</strong> uma afirmação estreita sobre uma formação que o DF paga e depois perde. Nada mais depende dela.</li>
+<li><strong>Leitura:</strong> pedido institucional, ou descartar. Eu descartaria, a menos que você queira fazer esse argumento.</li>
+</ul>
+</section>
+<section id="3-contagem-de-m-dicos-ativos-pela-busca-individu">
+<h2>3 — Contagem de médicos ativos pela busca individual do conselho</h2>
+<p><strong>Estado:</strong> recusado pelo publicador · <strong>Bloco 4, força de trabalho</strong></p>
+<p>A busca é paginada de dez em dez e validada por captcha no servidor a cada requisição, inclusive a cada virada de página. Automatizar contra um controle antiautomação é recusado aqui.</p>
+<ul>
+<li><strong>Endereço:</strong> https://portal.cfm.org.br/busca-medicos (<code>api_rest_php/api/v2/medicos/buscar_medicos</code>)</li>
+<li><strong>Resposta:</strong> HTTP 200, mas toda requisição precisa de um token de captcha conferido no servidor; sem um, responde <code>invalidinput</code>.</li>
+<li><strong>Trava:</strong> nada por si — é uma rota mais lenta para a mesma contagem que as tabelas de demografia dão.</li>
+<li><strong>Leitura:</strong> descartar. Se as tabelas de demografia forem recuperadas isto é inútil; se não forem, este ainda não é o caminho.</li>
+</ul>
+</section>
+<section id="3-o-anexo-da-portaria-de-2002-com-os-par-metros-">
+<h2>3 — O anexo da portaria de 2002 com os parâmetros de leitos</h2>
+<p><strong>Estado:</strong> recusado pelo publicador · <strong>Bloco 3, leitos e capacidade</strong></p>
+<p>A biblioteca virtual do ministério da saúde completa a conexão e depois a fecha sem enviar um byte — nove tentativas, nove vezes, por um equipamento de segurança que se identifica.</p>
+<ul>
+<li><strong>Endereço:</strong> https://bvsms.saude.gov.br/bvs/saudelegis/gm/2002/prt1101_12_06_2002.html</li>
+<li><strong>Resposta:</strong> o TLS completa, depois a conexão fecha com zero bytes — nove de nove, equipamento F5.</li>
+<li><strong>Trava:</strong> quase nada hoje. O dimensionamento de leitos passou a usar a metodologia de 2017; os parâmetros antigos só são publicados como faixa de comparação.</li>
+<li><strong>Leitura:</strong> efetivamente superado. Manter a lacuna declarada e seguir.</li>
+</ul>
+</section>
+<section id="2-hist-rico-de-equipes-por-m-s-no-cadastro-nacio">
+<h2>2 — Histórico de equipes por mês no cadastro nacional  <em>(não é lacuna)</em></h2>
+<p><strong>Estado:</strong> marcado como "ainda não buscado" · <strong>Bloco 3, leitos e capacidade</strong></p>
+<p>Listado como não buscado — mas o banco já tem a série: 39 linhas de equipes, 41 de unidades, 20 de habitantes por equipe, entregues em setembro. A linha de cobertura nunca foi atualizada.</p>
+<ul>
+<li><strong>Endereço:</strong> ftp://ftp.datasus.gov.br/dissemin/publicos/CNES/</li>
+<li><strong>Resposta:</strong> funciona. Os arquivos foram buscados; só a linha de cobertura está velha.</li>
+<li><strong>Trava:</strong> nada. Um erro de escrituração na tabela de cobertura.</li>
+<li><strong>Leitura:</strong> a registrar como correção.</li>
+</ul>
+</section>
+<section id="2-popula-o-residente-por-faixa-de-idade-n-o-lacu">
+<h2>2 — População residente por faixa de idade  <em>(não é lacuna)</em></h2>
+<p><strong>Estado:</strong> marcado como "ainda não buscado" · <strong>Bloco 1, indicadores</strong></p>
+<p>Também listado como não buscado, também já presente: 22 linhas de população do DF, coletadas quando a segunda interface do instituto de estatística foi adotada em setembro.</p>
+<ul>
+<li><strong>Endereço:</strong> https://apisidra.ibge.gov.br/ (HTTP 403, desafio Cloudflare)</li>
+<li><strong>Resposta:</strong> já coletado pela outra interface do mesmo publicador, <code>servicodados.ibge.gov.br</code>.</li>
+<li><strong>Trava:</strong> nada. O mesmo problema de escrituração de cima.</li>
+<li><strong>Leitura:</strong> a mesma correção.</li>
+</ul>
+<hr>
+</section>
+<section id="o-que-se-pede-a-quem-l">
+<h2>O que se pede a quem lê</h2>
+<p>Para cada entrada: <strong>descartar</strong>, <strong>caçar uma rota nova</strong>, ou <strong>manter</strong>.</p>
+<p><strong>O que as marcações de 19/09/2026 compraram, agora que foram construídas.</strong> Sete rotas foram marcadas e sete foram construídas. Cinco lacunas fecharam de vez — o tribunal de contas (foram dois saltos de certificado, não um), os votos do legislativo (estavam na interface que funciona, como a leitura dizia), as leis de carreira, a contagem de médicos, a folha de pagamento. Duas ficaram reduzidas a um buraco nomeado: a série de vencimentos tem 08/2006 a 06/2025 faltando e diz isso, e a cobertura da atenção primária tem a série do DF, não o corte regional, com a recusa que cada corte geográfico devolveu registrada ao lado.</p>
+<p><strong>O que segue aberto, e o próximo passo de cada um.</strong> Nove lacunas: o diário oficial só precisa de uma rota construída agora que a linha de permissão existe (nada está quebrado lá); as demonstrações do Hospital da Criança e a série do conselho regional são pedidos institucionais; os planos de governo precisam de um espelho; o censo da educação superior precisa de um segundo endereço da mesma instituição; a escola de saúde, o cadastro de cursos, a busca individual do conselho e o anexo da portaria de 2002 são os que eu descartaria — os três primeiros valem pouco para o esforço e o último está superado pela metodologia de 2017 já em uso.</p>
+<p>Duas entradas desta folha nunca foram lacunas: o dado está no banco e as linhas de cobertura estão velhas. Essa correção segue pendente.</p>
+<p>Este documento é o registro do que foi medido e uma lista para decidir. As sete rotas que ele marcou já estão na construção, e todo estado acima é remedido a cada execução.</p>
+</section>
+<footer>
+<p>Cada número desta página tem a sua fonte no próprio texto. Nenhum valor é estimado, e o que a fonte não publica está declarado como lacuna.</p>
+<div class="rep fim"><a href="mailto:sinapseagentes@gmail.com?subject=Relat%C3%B3rios%20Sa%C3%BAde%20DF%20%E2%80%94%20As%20dezoito%20lacunas%20e%20a%20decis%C3%A3o%20sobre%20cada%20uma%20%E2%80%94%20relato%20ou%20sugest%C3%A3o&amp;body=Descreva%20o%20problema%20encontrado%20ou%20a%20sugest%C3%A3o.%0A%0ASe%20for%20sobre%20um%20n%C3%BAmero%2C%20copie%20a%20frase%20ou%20a%20linha%20da%20tabela%20em%20que%20ele%20aparece.%0A%0A---%0ARelat%C3%B3rio%3A%20As%20dezoito%20lacunas%20e%20a%20decis%C3%A3o%20sobre%20cada%20uma%0A" data-relatar><span aria-hidden="true">⚑</span> Relatar problema ou sugestão</a></div>
+</footer>
+</div>
+<script>
+(function () {
+  var BASE = "mailto:sinapseagentes@gmail.com?subject=Relat%C3%B3rios%20Sa%C3%BAde%20DF%20%E2%80%94%20As%20dezoito%20lacunas%20e%20a%20decis%C3%A3o%20sobre%20cada%20uma%20%E2%80%94%20relato%20ou%20sugest%C3%A3o&body=Descreva%20o%20problema%20encontrado%20ou%20a%20sugest%C3%A3o.%0A%0ASe%20for%20sobre%20um%20n%C3%BAmero%2C%20copie%20a%20frase%20ou%20a%20linha%20da%20tabela%20em%20que%20ele%20aparece.%0A%0A---%0ARelat%C3%B3rio%3A%20As%20dezoito%20lacunas%20e%20a%20decis%C3%A3o%20sobre%20cada%20uma%0A";
+  function secao() {
+    var s = [].slice.call(document.querySelectorAll('section[id]')),
+        y = window.scrollY + 120, a = '';
+    s.forEach(function (e) { if (e.offsetTop <= y) { a = e.id; } });
+    return a;
+  }
+  [].forEach.call(document.querySelectorAll('[data-relatar]'), function (b) {
+    b.addEventListener('click', function () {
+      var extra = secao();
+      b.href = BASE + (extra
+        ? '&body=' + encodeURIComponent('Seção: ' + extra + '
+') : '');
+    });
+  });
+})();
+</script>
+</body>
+</html>

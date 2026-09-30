@@ -1,58 +1,17 @@
-<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Relatórios Saúde DF</title>
 <meta name="description" content="Relatórios avulsos sobre a saúde pública no Distrito Federal, feitos só com dados públicos e com a fonte de cada número.">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,650&family=Public+Sans:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
-<style>
-:root{--bg:#f5f6f3;--fg:#17211d;--mut:#56645e;--rule:#d5dbd6;--card:#ffffff;--a1:#11614f;--hl:#e5efe9;
---serif:"Newsreader",Georgia,serif;--sans:"Public Sans",system-ui,sans-serif;--mono:"JetBrains Mono",ui-monospace,monospace}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--bg:#111714;--fg:#e4ebe7;--mut:#9aaaa2;--rule:#2b3632;--card:#18201d;--a1:#4fc0a2;--hl:#1b2a25}}
-:root[data-theme="dark"]{color-scheme:dark;--bg:#111714;--fg:#e4ebe7;--mut:#9aaaa2;--rule:#2b3632;--card:#18201d;--a1:#4fc0a2;--hl:#1b2a25}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 var(--sans)}
-.wrap{max-width:980px;margin:0 auto;padding-inline:16px;padding-block:40px 64px}
-.kick{font:600 12px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--a1)}
-h1{font:650 clamp(36px,6vw,60px)/1.02 var(--serif);margin:.35em 0 .3em;text-wrap:balance;letter-spacing:-.01em}
-.lede{font-size:19px;max-width:62ch;color:var(--mut);margin:0 0 8px}
-.principios{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);margin:32px 0 40px}
-.principios div{background:var(--card);padding:16px 18px;font-size:14px;color:var(--mut)}
-.principios b{display:block;color:var(--fg);font-size:15px;margin-bottom:4px}
-h3{font:700 13px/1.3 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--mut);margin:0 0 12px}
-.lista{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:16px}
-.card{display:flex;flex-direction:column;gap:8px;background:var(--card);border:1px solid var(--rule);border-top:4px solid var(--a1);
-padding:20px;color:inherit;text-decoration:none;transition:background .15s}
-.card:hover,.card:focus-visible{background:var(--hl);outline:none}
-.card .num{font:600 12px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--a1)}
-.card h2{font:650 25px/1.15 var(--serif);margin:0;text-wrap:balance}
-.card p{margin:0;color:var(--mut);font-size:15px}
-.card .meta{font:12px/1.4 var(--mono);color:var(--mut);margin-top:auto;padding-top:8px}
-.card .ir{font-weight:600;font-size:14px;color:var(--a1)}
-footer{border-top:1px solid var(--rule);margin-top:48px;padding-top:20px;font-size:13px;color:var(--mut)}
-footer p{max-width:68ch}
-a{color:var(--a1)}
-.rep{display:flex;justify-content:flex-end;margin:12px 0 20px}
-.rep.fim{justify-content:center;margin:36px 0 8px}
-.rep button{display:inline-flex;align-items:center;gap:8px;background:#c8102e;color:#fff;cursor:pointer;
-font:600 14px/1 var(--sans,system-ui);padding:11px 16px;border-radius:6px;border:2px solid #c8102e}
-.rep button:hover,.rep button:focus-visible{background:#fff;color:#c8102e;outline:none}
-.modal{position:fixed;inset:0;background:rgba(10,15,30,.55);display:grid;place-items:center;z-index:20;padding:16px}
-.modal[hidden]{display:none}
-.modal-caixa{background:var(--card);color:var(--fg);border-radius:14px;max-width:560px;width:100%;
-max-height:88vh;overflow:auto;padding:24px;position:relative;box-shadow:0 20px 60px rgba(0,0,0,.35)}
-.modal-caixa h3{margin:0 0 8px}
-.fechar{position:absolute;top:10px;right:12px;font-size:26px;line-height:1;border:0;background:none;color:var(--mut);cursor:pointer}
-.form-relatar label{display:block;margin:12px 0;font-size:13px;color:var(--mut)}
-.form-relatar textarea,.form-relatar input[type=email]{width:100%;box-sizing:border-box;font:inherit;color:inherit;
-background:var(--card);border:1px solid var(--rule);border-radius:8px;padding:8px 10px;margin-top:4px;resize:vertical}
-.form-relatar button[type=submit]{background:#c8102e;color:#fff;border:2px solid #c8102e;border-radius:6px;
-padding:9px 16px;font:600 14px/1 var(--sans,system-ui);cursor:pointer}
-.form-relatar button[type=submit]:disabled{opacity:.6;cursor:wait}
-.nota{font-size:13px;color:var(--mut)}
-.campo-oculto{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
-@media print{.rep,.modal{display:none!important}}
-</style>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,650&family=Public+Sans:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="estilo.css">
+</head>
+<body>
 <div class="wrap">
-<div class="rep"><button type="button" data-relatar><span aria-hidden="true">⚑</span> Relatar problema ou sugestão</button></div>
+<div class="rep"><a href="mailto:sinapseagentes@gmail.com?subject=Relat%C3%B3rios%20Sa%C3%BAde%20DF%20%E2%80%94%20P%C3%A1gina%20inicial%20%E2%80%94%20relato%20ou%20sugest%C3%A3o&amp;body=Descreva%20o%20problema%20encontrado%20ou%20a%20sugest%C3%A3o.%0A%0ASe%20for%20sobre%20um%20n%C3%BAmero%2C%20copie%20a%20frase%20ou%20a%20linha%20da%20tabela%20em%20que%20ele%20aparece.%0A%0A---%0ARelat%C3%B3rio%3A%20P%C3%A1gina%20inicial%0A" data-relatar><span aria-hidden="true">⚑</span> Relatar problema ou sugestão</a></div>
+
 <div class="kick">Saúde no DF · relatórios avulsos</div>
 <h1>Relatórios sobre a saúde pública no Distrito Federal</h1>
 <p class="lede">Cada relatório faz um recorte sobre um tema e usa só dados públicos. A fonte de cada número está no próprio texto.</p>
@@ -62,7 +21,7 @@ padding:9px 16px;font:600 14px/1 var(--sans,system-ui);cursor:pointer}
 <div><b>Nada estimado</b>Quando a fonte não publica um dado, o relatório diz que ele falta e não preenche o buraco.</div>
 <div><b>Sem dado pessoal</b>Só contagens e medianas. Nenhum nome, CPF ou matrícula é publicado.</div>
 </div>
-<h3>Relatórios publicados · 2</h3>
+<p class="rotulo">Relatórios publicados · 10</p>
 <div class="lista">
 <a class="card" href="medicos/">
 <span class="num">Relatório 01</span>
@@ -78,62 +37,86 @@ padding:9px 16px;font:600 14px/1 var(--sans,system-ui);cursor:pointer}
 <span class="meta">SIH 2008–2024, CNES 2005–2026, balanços do IGES-DF 2018–2023 · publicado em 09/2026</span>
 <span class="ir" aria-hidden="true">Ler relatório →</span>
 </a>
+<a class="card" href="orcamento/">
+<span class="num">Relatório 03</span>
+<h2>Orçamento da Saúde no DF 2023–2026: fontes e lacunas</h2>
+<p>RREO, Fundo Constitucional, emendas federais e distritais, com cada figura conferida contra as tabelas do projeto.</p>
+<span class="meta">Prospecção de 28/09/2026 · conferida contra as tabelas do projeto</span>
+<span class="ir" aria-hidden="true">Ler relatório →</span>
+</a>
+<a class="card" href="graficos/">
+<span class="num">Relatório 04</span>
+<h2>Saúde DF em oito gráficos</h2>
+<p>Oito quadros: votado contra executado, GDF contra União, IGES-DF, emendas e a distribuição por rubrica.</p>
+<span class="meta">Oito quadros estáticos, 1080 × 1350 · 09/2026</span>
+<span class="ir" aria-hidden="true">Ler relatório →</span>
+</a>
+<a class="card" href="pedidos-lai/">
+<span class="num">Relatório 05</span>
+<h2>Pedidos de acesso à informação</h2>
+<p>O que não é publicado, a quem se pediu e em que termos — os pedidos redigidos, prontos para protocolar.</p>
+<span class="meta">Redigidos em 09/2026</span>
+<span class="ir" aria-hidden="true">Ler relatório →</span>
+</a>
+<a class="card" href="populacao/">
+<span class="num">Relatório 06</span>
+<h2>A população como denominador</h2>
+<p>De onde vem cada divisor por habitante, região por região, e por que um número por mil depende dele.</p>
+<span class="meta">IBGE e IPEDF · conferido contra os totais do publicador</span>
+<span class="ir" aria-hidden="true">Ler relatório →</span>
+</a>
+<a class="card" href="lacunas-decisao/">
+<span class="num">Relatório 07</span>
+<h2>As dezoito lacunas e a decisão sobre cada uma</h2>
+<p>O que falta, quanto pesa, o que se tentou e o que se decidiu — uma entrada por lacuna.</p>
+<span class="meta">Levantado em 09/2026</span>
+<span class="ir" aria-hidden="true">Ler relatório →</span>
+</a>
+<a class="card" href="procedencia-anterior/">
+<span class="num">Relatório 08</span>
+<h2>Auditoria de procedência dos documentos anteriores</h2>
+<p>As 58 afirmações dos documentos escritos antes de o projeto ter fonte própria, uma por uma.</p>
+<span class="meta">Medido em 22/08/2026 e remedido em 07/09/2026</span>
+<span class="ir" aria-hidden="true">Ler relatório →</span>
+</a>
+<a class="card" href="rota/">
+<span class="num">Relatório 09</span>
+<h2>A rota da análise</h2>
+<p>O plano em sequência: quais fontes, em que ordem, com que critério de conclusão.</p>
+<span class="meta">Escrita em 06/09/2026</span>
+<span class="ir" aria-hidden="true">Ler relatório →</span>
+</a>
+<a class="card" href="prospeccao-2026-09-28/">
+<span class="num">Relatório 10</span>
+<h2>Material de prospecção do orçamento</h2>
+<p>Os arquivos brutos e os dois scripts que produziram o relatório 03, com o que ficou de fora e por quê.</p>
+<span class="meta">Coletado em 28–29/09/2026</span>
+<span class="ir" aria-hidden="true">Ler relatório →</span>
+</a>
 </div>
 <footer>
-<p>O código que gera cada número está em
-<a href="https://github.com/maximusminus/relatorios-saude-df/tree/main/analise">relatorios-saude-df/analise</a>.
-Achou um erro ou tem uma sugestão? Use o botão vermelho.</p>
-<div class="rep fim"><button type="button" data-relatar><span aria-hidden="true">⚑</span> Relatar problema ou sugestão</button></div>
+<p>O código que gera cada número está no repositório do projeto. Achou um erro ou tem uma sugestão? Use o botão vermelho.</p>
+<div class="rep fim"><a href="mailto:sinapseagentes@gmail.com?subject=Relat%C3%B3rios%20Sa%C3%BAde%20DF%20%E2%80%94%20P%C3%A1gina%20inicial%20%E2%80%94%20relato%20ou%20sugest%C3%A3o&amp;body=Descreva%20o%20problema%20encontrado%20ou%20a%20sugest%C3%A3o.%0A%0ASe%20for%20sobre%20um%20n%C3%BAmero%2C%20copie%20a%20frase%20ou%20a%20linha%20da%20tabela%20em%20que%20ele%20aparece.%0A%0A---%0ARelat%C3%B3rio%3A%20P%C3%A1gina%20inicial%0A" data-relatar><span aria-hidden="true">⚑</span> Relatar problema ou sugestão</a></div>
 </footer>
 </div>
-<div id="modal-relatar" class="modal" hidden>
-<div class="modal-caixa" role="dialog" aria-modal="true" aria-labelledby="modal-titulo">
-<button type="button" class="fechar" id="modal-fechar" aria-label="Fechar">×</button>
-<h3 id="modal-titulo">Relatar problema ou sugestão</h3>
-<p class="nota">Sua mensagem é enviada por um serviço de terceiros (Web3Forms) direto ao operador do projeto;
-esta página não guarda nem lê o que você escrever.</p>
-<form id="form-relatar" class="form-relatar">
-<label for="relatar-mensagem">Mensagem<textarea id="relatar-mensagem" name="message" required rows="5"></textarea></label>
-<label for="relatar-email">Seu e-mail (opcional, para resposta)<input id="relatar-email" name="email" type="email"></label>
-<input type="hidden" name="subject" value="Relatórios Saúde DF — Página inicial — relato ou sugestão">
-<input type="hidden" name="from_name" value="Relatórios Saúde DF">
-<input type="checkbox" name="botcheck" class="campo-oculto" tabindex="-1" autocomplete="off" aria-hidden="true">
-<p><button type="submit">Enviar</button></p>
-<p id="relatar-status" class="nota" role="status"></p>
-</form></div></div>
 <script>
 (function () {
-  var CHAVE = "596b7023-f2a3-4f29-8f0b-fb446fad4664", RELATORIO = "Página inicial";
-  var m = document.getElementById('modal-relatar'), f = document.getElementById('form-relatar'),
-      st = document.getElementById('relatar-status'), origem = null;
+  var BASE = "mailto:sinapseagentes@gmail.com?subject=Relat%C3%B3rios%20Sa%C3%BAde%20DF%20%E2%80%94%20P%C3%A1gina%20inicial%20%E2%80%94%20relato%20ou%20sugest%C3%A3o&body=Descreva%20o%20problema%20encontrado%20ou%20a%20sugest%C3%A3o.%0A%0ASe%20for%20sobre%20um%20n%C3%BAmero%2C%20copie%20a%20frase%20ou%20a%20linha%20da%20tabela%20em%20que%20ele%20aparece.%0A%0A---%0ARelat%C3%B3rio%3A%20P%C3%A1gina%20inicial%0A";
   function secao() {
-    var s = [].slice.call(document.querySelectorAll('section[id]')), y = window.scrollY + 120, a = '';
+    var s = [].slice.call(document.querySelectorAll('section[id]')),
+        y = window.scrollY + 120, a = '';
     s.forEach(function (e) { if (e.offsetTop <= y) { a = e.id; } });
     return a;
   }
-  function abrir(ev) { origem = ev.currentTarget; st.textContent = ''; m.hidden = false;
-    document.getElementById('relatar-mensagem').focus(); }
-  function fechar() { m.hidden = true; if (origem) { origem.focus(); } }
-  [].forEach.call(document.querySelectorAll('[data-relatar]'), function (b) { b.addEventListener('click', abrir); });
-  document.getElementById('modal-fechar').addEventListener('click', fechar);
-  m.addEventListener('click', function (ev) { if (ev.target === m) { fechar(); } });
-  document.addEventListener('keydown', function (ev) { if (ev.key === 'Escape' && !m.hidden) { fechar(); } });
-  f.addEventListener('submit', function (ev) {
-    ev.preventDefault();
-    var bt = f.querySelector('button[type=submit]');
-    if (f.botcheck.checked) { st.textContent = 'Mensagem enviada. Obrigado.'; f.reset(); return; }
-    var corpo = {access_key: CHAVE, message: f.message.value, email: f.email.value,
-      subject: f.subject.value, from_name: f.from_name.value,
-      estado: JSON.stringify({relatorio: RELATORIO, secao: secao(), pagina: location.href})};
-    bt.disabled = true; st.textContent = 'Enviando…';
-    fetch('https://api.web3forms.com/submit', {method: 'POST',
-      headers: {'Content-Type': 'application/json', Accept: 'application/json'}, body: JSON.stringify(corpo)})
-      .then(function (r) { return r.json(); })
-      .then(function (j) { bt.disabled = false;
-        if (j.success) { st.textContent = 'Mensagem enviada. Obrigado.'; f.reset(); }
-        else { st.textContent = 'Não foi possível enviar: ' + (j.message || 'erro desconhecido') + '. Tente novamente.'; } })
-      .catch(function (e) { bt.disabled = false;
-        st.textContent = 'Não foi possível enviar: ' + e.message + '. Tente novamente.'; });
+  [].forEach.call(document.querySelectorAll('[data-relatar]'), function (b) {
+    b.addEventListener('click', function () {
+      var extra = secao();
+      b.href = BASE + (extra
+        ? '&body=' + encodeURIComponent('Seção: ' + extra + '
+') : '');
+    });
   });
 })();
 </script>
+</body>
+</html>

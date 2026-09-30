@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>A rota da análise — Relatórios Saúde DF</title>
+<meta name="description" content="O plano em sequência: quais fontes, em que ordem, com que critério de conclusão.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,650&family=Public+Sans:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="../estilo.css">
+</head>
+<body>
+<div class="wrap">
+<div class="rep"><a href="mailto:sinapseagentes@gmail.com?subject=Relat%C3%B3rios%20Sa%C3%BAde%20DF%20%E2%80%94%20A%20rota%20da%20an%C3%A1lise%20%E2%80%94%20relato%20ou%20sugest%C3%A3o&amp;body=Descreva%20o%20problema%20encontrado%20ou%20a%20sugest%C3%A3o.%0A%0ASe%20for%20sobre%20um%20n%C3%BAmero%2C%20copie%20a%20frase%20ou%20a%20linha%20da%20tabela%20em%20que%20ele%20aparece.%0A%0A---%0ARelat%C3%B3rio%3A%20A%20rota%20da%20an%C3%A1lise%0A" data-relatar><span aria-hidden="true">⚑</span> Relatar problema ou sugestão</a></div>
+<p><a class="voltar" href="../">← todos os relatórios</a></p>
+<div class="kick">Saúde no DF · relatório 09</div>
+<h1>A rota da análise</h1>
+<p><strong>O que isto é.</strong> Um plano em sequência, escrito em 06/09/2026, do repositório como ele estava até os quatro entregáveis que a missão revista pede. Cada passo tem o tamanho de uma etapa do fluxo do projeto: um escopo, as fontes que usa, as tabelas que produz e um critério de conclusão que pode ser conferido por máquina. Números de etapa não são atribuídos aqui.</p>
+<p><strong>Regra de leitura.</strong> Todo passo nomeia o padrão de script já existente que ele estende, então nada aqui pede maquinário novo a menos que diga. Três passos dependem de decisões que só quem opera pode tomar; estão marcados <strong>DECISÃO</strong>, e tudo que vem depois deles carrega a decisão em que espera.</p>
+<p><strong>Vocabulário, aberto uma vez.</strong> <em>CNES</em> — o cadastro nacional de estabelecimentos, leitos e profissionais de saúde. <em>SIH</em> — o sistema de internações hospitalares do SUS. <em>SIM</em> — o sistema de registro de óbitos. <em>SINASC</em> — o sistema de nascidos vivos. <em>TabNet</em> — o tabulador web do DATASUS. <em>FTP</em> — o servidor de arquivos brutos do DATASUS, que o projeto já lê para o SIH. <em>WAF</em> — um firewall de aplicação que recusa clientes que não são navegadores; é o que bloqueia, hoje, o cadastro de cursos do ministério da educação, o site de legislação do DF, a biblioteca virtual do ministério da saúde e o conselho de medicina. <em>RA</em> — Região Administrativa (35). <em>Região de Saúde</em> — as sete regiões de saúde da Secretaria. <em>ICSAP</em> — internações por condições sensíveis à atenção primária, isto é, internações que a atenção primária deveria ter evitado.</p>
+<hr>
+<section id="etapa-0-funda-es-ainda-sem-dado">
+<h2>Etapa 0 — Fundações (ainda sem dado)</h2>
+<h3>R0.1 Autorizar os novos hospedeiros</h3>
+<ul>
+<li><strong>Por quê.</strong> A coleta só busca em hospedeiros que tenham uma linha de autorização. A missão nomeia cinco famílias de hospedeiros que não têm nenhuma.</li>
+<li><strong>Linhas a acrescentar.</strong> Os dois hospedeiros da Câmara Legislativa; o do Tribunal de Contas; o painel de folha de pagamento da Secretaria; os caminhos de SIM, SINASC e histórico do CNES no FTP do DATASUS (a linha do SIH existe, os caminhos não); as tabelas de população na interface de séries do instituto de estatística (a linha do índice de preços existe, as de população não).</li>
+<li><strong>Concluído quando.</strong> Cada hospedeiro tem uma linha medida numa execução real, e cada nova necessidade tem uma linha de cobertura no estado <em>pendente</em>.</li>
+</ul>
+<h3>R0.2 <strong>DECISÃO</strong> — automação de navegador</h3>
+<ul>
+<li><strong>A pergunta.</strong> Quatro fontes estão atrás de firewalls de aplicação: o cadastro de cursos de medicina, o site de legislação do DF (tabelas de vencimento e toda lei distrital), a biblioteca virtual do ministério (o anexo da portaria de 2002 com os parâmetros de leitos) e o conselho de medicina (demografia médica). O projeto não tinha navegador automatizado, por escolha deliberada.</li>
+<li><strong>Opção A.</strong> Adotar um navegador como uma dependência fixada, com a regra de que ele só busca o que uma pessoa buscaria clicando. Destrava o bloco de formação médica, a série de tabelas de vencimento no bloco de carreiras e o anexo da norma no bloco de leitos.</li>
+<li><strong>Opção B.</strong> Não adotar. Aquelas quatro necessidades são declaradas lacunas com o firewall como motivo, e os blocos de formação e de carreiras são escritos com o que as fontes não bloqueadas dão.</li>
+<li><strong>Concluído quando.</strong> A resposta está registrada.</li>
+</ul>
+<h3>R0.3 <strong>DECISÃO</strong> — uma plataforma de terceiros como segunda rota</h3>
+<ul>
+<li><strong>A pergunta.</strong> Existe uma plataforma que republica SIM, SINASC, SIH, CNES e o censo da educação superior sem firewalls, mas ela é uma republicadora de terceiros e exige uma conta de nuvem. Usá-la significa citar um espelho, não a origem.</li>
+<li><strong>Recomendação.</strong> Usá-la <strong>só</strong> como conferência cruzada, e para o censo da educação superior se a Opção B for escolhida em R0.2; nunca como a fonte citada de uma cifra que o DATASUS publica diretamente.</li>
+<li><strong>Concluído quando.</strong> Registrado.</li>
+</ul>
+<hr>
+</section>
+<section id="etapa-1-a-espinha-causal-blocos-1-5-e-2">
+<h2>Etapa 1 — A espinha causal (blocos 1, 5 e 2)</h2>
+<p>Estes três blocos carregam a tese e quase nada deles estava no repositório. Vão primeiro.</p>
+<h3>R1.1 Bloco 1 — indicadores de saúde, 1996–2024</h3>
+<ul>
+<li><strong>Fontes.</strong> Microdados reduzidos de SIM e SINASC (FTP, arquivos do DF, por ano); cobertura vacinal pelo TabNet; esperança de vida pela interface de séries do instituto de estatística.</li>
+<li><strong>Padrão.</strong> O leitor de FTP de <code>sih.py</code> para os microdados; <code>tabnet.py</code> para a vacinação; o cliente de séries já usado no índice de preços para o instituto de estatística.</li>
+<li><strong>Tabelas.</strong> <code>sim_obitos</code> (óbitos por capítulo de causa, faixa de idade, região administrativa de residência, ano), <code>sinasc_serie</code> (nascimentos, baixo peso, consultas de pré-natal, ano), <code>mortalidade_infantil</code> e <code>mortalidade_materna</code> (derivadas das duas acima, com a fórmula na própria linha), <code>cobertura_vacinal</code>, <code>esperanca_vida</code>.</li>
+<li><strong>Regra de janela.</strong> Toda tabela carrega início e fim da janela; onde a série é mais curta do que "os anos 2000" o dossiê diz quais anos ela tem de fato.</li>
+<li><strong>Concluído quando.</strong> Cada série reproduz o total do DF publicado pelo próprio DATASUS em pelo menos dois anos, no mesmo padrão de reconciliação que o SIH já usa.</li>
+</ul>
+<h3>R1.2 Bloco 5 — carreiras: remuneração, estagnação e vacância</h3>
+<ul>
+<li><strong>Fontes.</strong> O painel de folha de pagamento da Secretaria (achar a interface por baixo dele do mesmo jeito que se achou a de despesa no portal da transparência); a página de cargos vagos e ocupados do portal da transparência; o diário oficial para concursos e nomeações (só índice); as tabelas de vencimento do site de legislação (<strong>espera R0.2</strong>).</li>
+<li><strong>Padrão.</strong> Os leitores de interface do portal da transparência; o leitor de índice já usado nos contratos do Hospital da Criança para o diário oficial (endereço e título, sem análise do conteúdo).</li>
+<li><strong>Tabelas.</strong> <code>remuneracao_carreira</code> (remuneração mediana por carreira por mês), <code>cargos_vagos</code>, <code>concursos_nomeacoes</code> (índice), <code>vencimento_tabela</code> (se R0.2 = A). Estender a série do índice de preços até o primeiro ano que a folha der.</li>
+<li><strong>Derivada.</strong> <code>remuneracao_real</code> = nominal ÷ índice de preços, com o ano-base declarado.</li>
+<li><strong>Concluído quando.</strong> As três séries — remuneração real, cargos vagos, cargos ocupados — existem para a mesma janela, e o dossiê pode enunciar a associação sem estimar uma única célula.</li>
+</ul>
+<h3>R1.3 Bloco 2 — atenção primária: unidades contra a cobertura que declaram</h3>
+<ul>
+<li><strong>Fontes.</strong> As exportações de cobertura da atenção primária para o DF, em <strong>duas janelas declaradas</strong> (a fórmula antiga, de 2007 a 2020, e a do Previne Brasil, de 2021 em diante) — e elas <strong>não são emendadas</strong>; o histórico do CNES para equipes de saúde da família e agentes comunitários por competência (bases anuais do FTP); e as internações evitáveis filtradas dos microdados de internação já carregados, pela lista de códigos da portaria de 2008.</li>
+<li><strong>Padrão.</strong> O carregador de bases anuais do CNES; um script de tabela derivada para as internações evitáveis (sem buscar nada).</li>
+<li><strong>Tabelas.</strong> <code>aps_cobertura_egestor</code> (duas janelas), <code>equipes_aps_serie</code>, <code>ubs_serie</code>, <code>icsap_serie</code>, e a tabela de razão <code>habitantes_por_equipe</code> por ano e, onde o CNES der a região administrativa, por região.</li>
+<li><strong>Concluído quando.</strong> A razão existe como série e o total de internações evitáveis de um ano bate com a tabulação do próprio TabNet para o DF.</li>
+</ul>
+<hr>
+</section>
+<section id="etapa-2-capacidade-e-o-contraponto-blocos-3-e-6">
+<h2>Etapa 2 — Capacidade e o contraponto (blocos 3 e 6)</h2>
+<h3>R2.1 Bloco 3 — de um retrato para uma série</h3>
+<ul>
+<li><strong>Fontes.</strong> As bases completas do CNES, uma competência por ano de 2005 a 2026; a tabela de serviços classificados da mesma base para nefrologia e a de equipamentos para máquinas de diálise; as internações por estabelecimento (já carregadas).</li>
+<li><strong>Padrão.</strong> Exatamente o carregador da competência atual, parametrizado pela competência; o script que coloca cada estabelecimento numa região administrativa, refeito por competência.</li>
+<li><strong>Tabelas.</strong> <code>leitos_serie_ra</code>, <code>leitos_serie_regiao</code> (enfermaria e UTI adulta, pediátrica e neonatal <strong>em separado</strong>), <code>hemodialise_capacidade</code>, <code>hospitais_regionais</code> (nome, região administrativa, ano de abertura, fonte), <code>dimensionamento_serie</code> (o dimensionamento existente recalculado por ano contra a população <strong>daquele</strong> ano).</li>
+<li><strong>Demanda reprimida.</strong> Não é publicada. Protocolar um pedido de acesso à informação à Secretaria pela fila de regulação por especialidade e região, e guardar o pedido (número e data) como uma linha de sondagem. Até ser respondido, o dossiê diz isso.</li>
+<li><strong>Concluído quando.</strong> A linha de 07/2026 da série é igual, na unidade, às tabelas de dimensionamento atuais.</li>
+</ul>
+<h3>R2.2 Bloco 6 — IGES-DF contra o Hospital da Criança, três tabelas derivadas</h3>
+<ul>
+<li><strong>Fontes.</strong> Nada novo a buscar: a série de demonstrações (repasses ao IGES-DF), os leitos por estabelecimento (das unidades do IGES-DF e do Hospital da Criança), os microdados de internação (produção por código de estabelecimento) e as opiniões de auditoria. Mais uma resondagem: a página de demonstrações contábeis do Hospital da Criança — o guia de entrada diz que ela responde, a tabela de cobertura diz que está ausente; uma das duas está velha.</li>
+<li><strong>Tabelas.</strong> <code>custo_por_leito</code> e <code>custo_por_internacao</code> (repasse ÷ leitos, repasse ÷ internações, por entidade e por ano, com a fórmula na linha); <code>desfechos_por_entidade</code> (óbitos hospitalares, permanência média, a partir das internações); <code>transparencia_matriz</code> (o que cada uma publica: tipo de documento × formato × granularidade, uma linha por célula, com o endereço).</li>
+<li><strong>Fragmentação.</strong> Uma necessidade de índice: quais serviços saíram da rede direta da Secretaria e quando (os contratos de gestão e os aditivos já estão indexados) — um índice, não uma narrativa.</li>
+<li><strong>Concluído quando.</strong> Cada uma das quatro dimensões que a missão nomeia tem ao menos uma tabela, ou uma linha de lacuna dizendo exatamente o que não é publicado.</li>
+</ul>
+<hr>
+</section>
+<section id="etapa-3-responsabiliza-o-blocos-7-8-e-4">
+<h2>Etapa 3 — Responsabilização (blocos 7, 8 e 4)</h2>
+<h3>R3.1 Bloco 8 — o registro da Câmara Legislativa</h3>
+<ul>
+<li><strong>Fontes.</strong> A interface pública de proposições da Câmara, para requerimentos de informação, convocações, projetos e comissões de inquérito, com autoria, data, número e tramitação; o relatório analítico e o parecer prévio do Tribunal de Contas por ano (índice); o julgamento de cada um pela Câmara; as emendas parlamentares à saúde no portal da transparência (autorizada, empenhada, paga).</li>
+<li><strong>Padrão.</strong> O leitor paginado de interface já usado no IGES-DF, com a contagem conferida contra o total que o próprio servidor informa; o leitor de índice dos contratos para o Tribunal de Contas.</li>
+<li><strong>Tabelas.</strong> <code>cldf_proposicoes_saude</code>, <code>tcdf_pareceres_previos</code>, <code>cldf_julgamento_contas</code>, <code>emendas_saude</code>.</li>
+<li><strong>A junção.</strong> <code>momentos_de_virada</code>: para cada ano em que um indicador da Etapa 1 virou, as proposições daquele ano e do seguinte, com o instrumento usado ou não usado. <strong>É a tabela que permite ao leitor tirar a inferência que a missão deixa para ele.</strong></li>
+<li><strong>Concluído quando.</strong> A contagem de proposições de um ano bate com a busca do próprio portal da Câmara.</li>
+</ul>
+<h3>R3.2 Bloco 7 — prometido, orçado, executado, entregue</h3>
+<ul>
+<li><strong>Fontes.</strong> Os valores planejados das leis orçamentárias (site de legislação, <strong>espera R0.2</strong>; documentos da Secretaria de Economia como alternativa); os endereços do portal da transparência estendidos a empenhado e pago (o de liquidado já existe); as metas do Plano Distrital de Saúde 2024–2027 a partir do documento já guardado, com um traçado de leitura declarado (a extração anterior foi rejeitada como ruído); os relatórios anuais de gestão pelo sistema federal (índice); e os planos de governo de 2018 e 2022 pelo sistema de divulgação de candidaturas (índice).</li>
+<li><strong>Tabelas.</strong> <code>orcamento_saude_etapas</code> (aprovado, autorizado, empenhado, liquidado e pago por ano), <code>pds_metas</code> (meta, alvo, alcançado, página da fonte), <code>promessas</code> (índice).</li>
+<li><strong>Concluído quando.</strong> A diferença entre cada par de estágios é uma coluna calculada, <strong>nunca uma frase</strong>.</li>
+</ul>
+<h3>R3.3 Bloco 4 — formação médica, 35 anos (<strong>espera R0.2 / R0.3</strong>)</h3>
+<ul>
+<li><strong>Caminho da Opção A.</strong> A consulta avançada do cadastro de cursos por navegador → <code>cursos_medicina_df</code> (curso, instituição, ano de autorização, vagas); os microdados do censo da educação superior → <code>medicina_ingressantes_egressos</code> por ano; a demografia médica do conselho → <code>medicos_por_mil</code> (só no nível da unidade federativa — e dizendo isso).</li>
+<li><strong>Caminho da Opção B.</strong> O censo da educação superior pela plataforma de terceiros, como espelho conferível; o cadastro de cursos e o conselho declarados lacunas com o firewall como motivo; a busca individual do conselho regional não automatizada (captcha).</li>
+<li><strong>Retenção.</strong> Os vínculos de médicos em estabelecimentos da Secretaria por ano (bases anuais de R2.1) — o único indicador público aproximado para "ficou na rede pública". Nomeado como aproximação.</li>
+<li><strong>Concluído quando.</strong> Em qualquer dos caminhos, toda linha do bloco tem uma cifra com fonte ou uma linha de lacuna.</li>
+</ul>
+<hr>
+</section>
+<section id="etapa-4-os-documentos">
+<h2>Etapa 4 — Os documentos</h2>
+<h3>R4.1 Reestruturar o dossiê nos oito blocos</h3>
+<ul>
+<li>O esqueleto de seis eixos é substituído pelos oito blocos da missão. O sumário executivo é reescrito em torno da cadeia causal, um parágrafo por elo, cada um com a referência da sua tabela.</li>
+<li><strong>Conferência antiplágio como trava.</strong> Um script compara a nova estrutura de seções e todo cabeçalho de tabela contra o dossiê do adversário; qualquer coincidência reprova a execução.</li>
+<li><strong>Concluído quando.</strong> O verificador rederiva toda afirmação contra as novas tabelas e a renderização é determinística.</li>
+</ul>
+<h3>R4.2 Os três anexos</h3>
+<ul>
+<li><strong>Anexo de procedência.</strong> Gerado pelo verificador, e não mantido à mão como era.</li>
+<li><strong>Lista de lacunas.</strong> Gerada da tabela de cobertura, das sondagens e das linhas de pedido de acesso à informação, agrupada por bloco, cada uma com o seu motivo (firewall, não publicado, descontinuado, bienal).</li>
+<li><strong>Sumário executivo.</strong> Uma página, extraída do próprio dossiê pelo script de PDF, não escrita à parte.</li>
+<li><strong>Concluído quando.</strong> Os três são saídas de uma execução, não arquivos.</li>
+</ul>
+<hr>
+</section>
+<section id="sequ-ncia-e-depend-ncias">
+<h2>Sequência e dependências</h2>
+<pre><code>R0.1 ──► R1.1 ──► R1.3 ──► R2.1 ──► R2.2 ──► R3.1 ──► R3.2 ──► R4.1 ──► R4.2
+           │                                      ▲
+R0.2 ──────┼──────────────────────────────────────┴──► R3.3
+R0.3 ──────┘                                            (espera R0.2/R0.3)
+R1.2 corre em paralelo com R1.1 depois de R0.1</code></pre>
+<ul>
+<li><strong>Caminho crítico:</strong> R0.1 → R1.1 → R1.3 → R2.1 → R3.1 → R4.1. Todo o resto encaixa ao lado.</li>
+<li><strong>Primeiro resultado visível:</strong> R3.1, o bloco da Câmara, é o passo mais barato com cobertura zero — uma interface que devolve JSON, sem firewall, e um padrão de leitor que já existe. Se se quiser um resultado rápido antes da espinha, é o que se roda logo depois de R0.1.</li>
+</ul>
+</section>
+<section id="o-que-esta-rota-se-recusa-a-fazer">
+<h2>O que esta rota se recusa a fazer</h2>
+<ul>
+<li>Estimar qualquer célula para fechar uma série.</li>
+<li>Emendar as duas janelas de cobertura da atenção primária numa só linha.</li>
+<li>Automatizar uma busca protegida por captcha.</li>
+<li>Citar um espelho onde a origem publica a mesma cifra.</li>
+<li>Escrever a conclusão sobre intenção — as tabelas apresentam autor, data e número; a inferência é do leitor.</li>
+</ul>
+</section>
+<footer>
+<p>Cada número desta página tem a sua fonte no próprio texto. Nenhum valor é estimado, e o que a fonte não publica está declarado como lacuna.</p>
+<div class="rep fim"><a href="mailto:sinapseagentes@gmail.com?subject=Relat%C3%B3rios%20Sa%C3%BAde%20DF%20%E2%80%94%20A%20rota%20da%20an%C3%A1lise%20%E2%80%94%20relato%20ou%20sugest%C3%A3o&amp;body=Descreva%20o%20problema%20encontrado%20ou%20a%20sugest%C3%A3o.%0A%0ASe%20for%20sobre%20um%20n%C3%BAmero%2C%20copie%20a%20frase%20ou%20a%20linha%20da%20tabela%20em%20que%20ele%20aparece.%0A%0A---%0ARelat%C3%B3rio%3A%20A%20rota%20da%20an%C3%A1lise%0A" data-relatar><span aria-hidden="true">⚑</span> Relatar problema ou sugestão</a></div>
+</footer>
+</div>
+<script>
+(function () {
+  var BASE = "mailto:sinapseagentes@gmail.com?subject=Relat%C3%B3rios%20Sa%C3%BAde%20DF%20%E2%80%94%20A%20rota%20da%20an%C3%A1lise%20%E2%80%94%20relato%20ou%20sugest%C3%A3o&body=Descreva%20o%20problema%20encontrado%20ou%20a%20sugest%C3%A3o.%0A%0ASe%20for%20sobre%20um%20n%C3%BAmero%2C%20copie%20a%20frase%20ou%20a%20linha%20da%20tabela%20em%20que%20ele%20aparece.%0A%0A---%0ARelat%C3%B3rio%3A%20A%20rota%20da%20an%C3%A1lise%0A";
+  function secao() {
+    var s = [].slice.call(document.querySelectorAll('section[id]')),
+        y = window.scrollY + 120, a = '';
+    s.forEach(function (e) { if (e.offsetTop <= y) { a = e.id; } });
+    return a;
+  }
+  [].forEach.call(document.querySelectorAll('[data-relatar]'), function (b) {
+    b.addEventListener('click', function () {
+      var extra = secao();
+      b.href = BASE + (extra
+        ? '&body=' + encodeURIComponent('Seção: ' + extra + '
+') : '');
+    });
+  });
+})();
+</script>
+</body>
+</html>
