@@ -16,7 +16,7 @@ interna aponta para o vazio e que nenhum dado de pessoa entrou.
 Os 10 relatórios, na ordem em que a página os lista:
 
 01. **O médico da Secretaria de Saúde do DF** — `medicos/`
-02. **IGES-DF e Hospital da Criança: dois modelos pagos pela SES** — `iges-hcb/`
+02. **O Instituto de Gestão Estratégica de Saúde do DF e o Hospital da Criança: dois modelos pagos pela Secretaria** — `iges-hcb/`
 03. **Orçamento da Saúde no DF 2023–2026: fontes e lacunas** — `orcamento/`
 04. **Saúde DF em oito gráficos** — `graficos/`
 05. **Pedidos de acesso à informação** — `pedidos-lai/`

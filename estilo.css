@@ -62,4 +62,14 @@ padding:9px 16px;font:600 14px/1 var(--sans,system-ui);cursor:pointer}
 .form-relatar button[type=submit]:disabled{opacity:.6;cursor:wait}
 .nota{font-size:13px;color:var(--mut)}
 .campo-oculto{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+sup.nota-ref{font-size:.68em;line-height:0;vertical-align:super;margin-left:1px;font-family:var(--sans)}
+sup.nota-ref a{text-decoration:none;padding:0 2px;border-radius:3px;background:var(--hl);color:var(--a1);font-weight:600}
+sup.nota-ref a:hover,sup.nota-ref a:focus-visible{background:var(--a1);color:var(--bg);outline:none}
+sup.nota-ref:target a,li[id^="nota-"]:target{background:var(--hl);outline:2px solid var(--a1)}
+#notas{margin-top:40px;padding-top:12px;border-top:3px double var(--rule)}
+#notas .nota-intro{font-size:14px;color:var(--mut);max-width:60ch}
+ol.notas{font-size:14.5px;color:var(--mut);padding-left:1.6em}
+ol.notas>li{margin:0 0 10px;scroll-margin-top:16px}
+ol.notas code{font-size:.92em}
+a.volta-nota{text-decoration:none;color:var(--a1);font-weight:700;margin-left:2px}
 @media print{.rep,.modal,.voltar{display:none!important}}

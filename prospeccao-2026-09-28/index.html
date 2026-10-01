@@ -23,20 +23,34 @@
 <section id="leiame">
 <h2>O que a prospecção fez, nas palavras de quem a fez</h2>
 <h3>Prospecção — orçamento da Saúde do DF, 2023–2026 (28–29/09/2026)</h3>
-<p>Material bruto de uma sessão de prospecção. Evidência do que foi medido; o build não lê esta pasta. Documento de análise: https://claude.ai/artifact/6fZfkv5LzNyMTovFKxf4NF — plano: plano/apuração de 2026-09-28.plano.md (não aprovado).</p>
+<p>Esta pasta guarda os arquivos como eles saíram dos sites oficiais, num levantamento feito em dois dias sobre o dinheiro da saúde no Distrito Federal. Ela está aqui por um motivo só: para que qualquer pessoa possa refazer a conta e chegar aos mesmos números — ou mostrar que eles estão errados.<sup class="nota-ref" id="nref-1"><a href="#nota-1">1</a></sup></p>
+<p>O que há dentro, arquivo por arquivo:</p>
 <ul>
-<li><code>brutos/rreo_dez_2023|2024|2025.pdf</code> — RREO de dezembro, Secretaria de Economia do DF (Anexos 2 e 12).</li>
-<li><code>brutos/rreo_20XX_02.json</code> — Anexo 2 do RREO pelo Siconfi (Tesouro), ente 53.</li>
-<li><code>anexo12_total_saude.json</code> — despesa total com saúde por subfunção, extraída dos PDFs (Anexo 12).</li>
-<li><code>brutos/federal/orc_fed_20XX.zip</code> — orçamento da União (FCDF = UO 73901). O arquivo de emendas federais (32 MB) não está aqui: <code>baixar_rreo.sh</code> baixa de novo.</li>
-<li><code>brutos/df/</code> — emendas distritais (Portal da Transparência do DF), pagamentos ao IGES-DF e ao HCB, RREO 2026 parcial.</li>
-<li><code>fcdf_out/</code> — pagamentos da UG 170397 (FCDF – Secretaria de Saúde) por favorecido, um arquivo por dia: 1.361 de 1.366 dias; os 5 faltantes estão em <code>fcdf_faltando.txt</code>.</li>
-<li><code>fcdf_pagamentos.py --resumo</code> — soma por ano (IGES-DF, HCB, total). <code>baixar_rreo.sh</code> — refaz os downloads.</li>
+<li><code>brutos/rreo_dez_2023|2024|2025.pdf</code> — o relatório de fim de ano em que a Secretaria de Economia do DF presta contas do orçamento.<sup class="nota-ref" id="nref-2"><a href="#nota-2">2</a></sup></li>
+<li><code>brutos/rreo_20XX_02.json</code> — os mesmos números, baixados do sistema do Tesouro Nacional.<sup class="nota-ref" id="nref-3"><a href="#nota-3">3</a></sup></li>
+<li><code>anexo12_total_saude.json</code> — quanto o DF gastou com saúde, separado por área, extraído dos relatórios acima.<sup class="nota-ref" id="nref-4"><a href="#nota-4">4</a></sup></li>
+<li><code>brutos/federal/orc_fed_20XX.zip</code> — o orçamento da União, de onde sai o fundo federal que paga parte da saúde do DF.<sup class="nota-ref" id="nref-5"><a href="#nota-5">5</a></sup></li>
+<li><code>brutos/df/</code> — emendas de deputados distritais, pagamentos aos dois hospitais de gestão terceirizada e a prestação de contas ainda incompleta do ano em curso.<sup class="nota-ref" id="nref-6"><a href="#nota-6">6</a></sup></li>
+<li><code>fcdf_out/</code> — os pagamentos desse fundo federal, favorecido por favorecido, um arquivo por dia.<sup class="nota-ref" id="nref-7"><a href="#nota-7">7</a></sup></li>
+<li><code>fcdf_pagamentos.py --resumo</code> — soma por ano. <code>baixar_rreo.sh</code> — refaz os downloads.</li>
 </ul>
 </section>
 <section id="arquivos">
 <h2>Os arquivos</h2>
 <div class="tabela"><table><thead><tr><th>Arquivo</th><th>Tamanho</th></tr></thead><tbody><tr><td><a href="anexo12_total_saude.json">anexo12_total_saude.json</a></td><td>4 kB</td></tr><tr><td><a href="baixar_rreo.sh">baixar_rreo.sh</a></td><td>3 kB</td></tr><tr><td><a href="brutos/df/dfem_2023.json">brutos/df/dfem_2023.json</a></td><td>191 kB</td></tr><tr><td><a href="brutos/df/dfem_2024.json">brutos/df/dfem_2024.json</a></td><td>147 kB</td></tr><tr><td><a href="brutos/df/dfem_2025.json">brutos/df/dfem_2025.json</a></td><td>169 kB</td></tr><tr><td><a href="brutos/df/dfem_2026.json">brutos/df/dfem_2026.json</a></td><td>158 kB</td></tr><tr><td><a href="brutos/df/ob_2023_GESTAO-20ESTRAT.json">brutos/df/ob_2023_GESTAO-20ESTRAT.json</a></td><td>1 kB</td></tr><tr><td><a href="brutos/df/ob_2024_GESTAO-20ESTRAT.json">brutos/df/ob_2024_GESTAO-20ESTRAT.json</a></td><td>1 kB</td></tr><tr><td><a href="brutos/df/ob_2025_GESTAO-20ESTRAT.json">brutos/df/ob_2025_GESTAO-20ESTRAT.json</a></td><td>1 kB</td></tr><tr><td><a href="brutos/df/ob_2026_GESTAO-20ESTRAT.json">brutos/df/ob_2026_GESTAO-20ESTRAT.json</a></td><td>1 kB</td></tr><tr><td><a href="brutos/df/ob_hcb_2023.json">brutos/df/ob_hcb_2023.json</a></td><td>1 kB</td></tr><tr><td><a href="brutos/df/ob_hcb_2024.json">brutos/df/ob_hcb_2024.json</a></td><td>1 kB</td></tr><tr><td><a href="brutos/df/ob_hcb_2025.json">brutos/df/ob_hcb_2025.json</a></td><td>1 kB</td></tr><tr><td><a href="brutos/df/ob_hcb_2026.json">brutos/df/ob_hcb_2026.json</a></td><td>1 kB</td></tr><tr><td><a href="brutos/df/rreo_2026_p3.json">brutos/df/rreo_2026_p3.json</a></td><td>716 kB</td></tr><tr><td><a href="brutos/federal/orc_fed_2023.zip">brutos/federal/orc_fed_2023.zip</a></td><td>733 kB</td></tr><tr><td><a href="brutos/federal/orc_fed_2024.zip">brutos/federal/orc_fed_2024.zip</a></td><td>803 kB</td></tr><tr><td><a href="brutos/federal/orc_fed_2025.zip">brutos/federal/orc_fed_2025.zip</a></td><td>831 kB</td></tr><tr><td><a href="brutos/federal/orc_fed_2026.zip">brutos/federal/orc_fed_2026.zip</a></td><td>780 kB</td></tr><tr><td><a href="brutos/rreo_2023_02.json">brutos/rreo_2023_02.json</a></td><td>790 kB</td></tr><tr><td><a href="brutos/rreo_2024_02.json">brutos/rreo_2024_02.json</a></td><td>791 kB</td></tr><tr><td><a href="brutos/rreo_2025_02.json">brutos/rreo_2025_02.json</a></td><td>788 kB</td></tr><tr><td><a href="brutos/rreo_dez_2023.pdf">brutos/rreo_dez_2023.pdf</a></td><td>1.229 kB</td></tr><tr><td><a href="brutos/rreo_dez_2024.pdf">brutos/rreo_dez_2024.pdf</a></td><td>1.018 kB</td></tr><tr><td><a href="brutos/rreo_dez_2025.pdf">brutos/rreo_dez_2025.pdf</a></td><td>1.059 kB</td></tr><tr><td><a href="fcdf_faltando.txt">fcdf_faltando.txt</a></td><td>0 kB</td></tr><tr><td><a href="fcdf_pagamentos.py">fcdf_pagamentos.py</a></td><td>3 kB</td></tr></tbody></table></div>
+</section>
+<section id="notas">
+<h2>Notas</h2>
+<p class="nota-intro">De onde veio cada número, como foi lido e o que ainda falta. O texto acima não precisa destas notas para ser entendido; elas estão aqui para quem quiser conferir.</p>
+<ol class="notas">
+<li id="nota-1">Material bruto de uma sessão de prospecção. Evidência do que foi medido; o build não lê esta pasta. Documento de análise: <code>https://claude.ai/artifact/6fZfkv5LzNyMTovFKxf4NF</code> — <code>plano: plano/apuração de 2026-09-28.plano.md</code> (não aprovado). <a class="volta-nota" href="#nref-1" aria-label="voltar ao texto">↩</a></li>
+<li id="nota-2">RREO (Relatório Resumido da Execução Orçamentária) de dezembro, Secretaria de Economia do DF, Anexos 2 e 12. <a class="volta-nota" href="#nref-2" aria-label="voltar ao texto">↩</a></li>
+<li id="nota-3">Anexo 2 do RREO pelo Siconfi (Tesouro), ente 53. <a class="volta-nota" href="#nref-3" aria-label="voltar ao texto">↩</a></li>
+<li id="nota-4">Despesa total com saúde por subfunção, extraída dos PDFs (Anexo 12). <a class="volta-nota" href="#nref-4" aria-label="voltar ao texto">↩</a></li>
+<li id="nota-5">Orçamento da União; o Fundo Constitucional do DF é a unidade orçamentária <code>UO 73901</code>. O arquivo de emendas federais (32 MB) não está aqui: <code>baixar_rreo.sh</code> baixa de novo. <a class="volta-nota" href="#nref-5" aria-label="voltar ao texto">↩</a></li>
+<li id="nota-6"><code>brutos/df/</code> — emendas distritais (Portal da Transparência do DF), pagamentos ao IGES-DF (Instituto de Gestão Estratégica de Saúde do DF) e ao HCB (Hospital da Criança de Brasília), RREO de 2026 parcial. <a class="volta-nota" href="#nref-6" aria-label="voltar ao texto">↩</a></li>
+<li id="nota-7"><code>fcdf_out/</code> — pagamentos da <code>UG 170397</code> (Fundo Constitucional do DF – Secretaria de Saúde) por favorecido, um arquivo por dia: 1.361 de 1.366 dias; os 5 faltantes estão em <code>fcdf_faltando.txt</code>. <a class="volta-nota" href="#nref-7" aria-label="voltar ao texto">↩</a></li>
+</ol>
 </section>
 <footer>
 <p>Cada número desta página tem a sua fonte no próprio texto. Nenhum valor é estimado, e o que a fonte não publica está declarado como lacuna.</p>
